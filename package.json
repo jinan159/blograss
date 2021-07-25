@@ -1,0 +1,23 @@
+{
+  "name": "blograss",
+  "version": "1.0.0",
+  "description": "Easy to show your passion of blogging",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "vercel dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinan159/blograss.git"
+  },
+  "keywords": [
+    "blograss"
+  ],
+  "author": "jinan159",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jinan159/blograss/issues"
+  },
+  "homepage": "https://github.com/jinan159/blograss#readme"
+}
