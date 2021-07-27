@@ -1,0 +1,18 @@
+{
+    "blog":{
+        "tistory": {
+            "name": "tistory",
+            "isService": true,
+            "api_urls":{
+                "post_list":"https://www.tistory.com/apis/post/list"
+            }
+        },
+        "velog": {
+            "name": "velog",
+            "isService": false,
+            "api_urls":{
+                "rss_url":"https://v2.velog.io/rss"
+            }
+        }
+    }
+}

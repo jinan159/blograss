@@ -1,0 +1,85 @@
+{
+    "grass": {
+        "theme": {
+            "brown": {
+                "text_color": "c96245",
+                "level_colors": {
+                    "0": "2e333a",
+                    "1": "49322c",
+                    "2": "724337",
+                    "3": "9f513c",
+                    "4": "c96245"
+                }
+            },
+            "gray": {
+                "text_color": "c96245",
+                "level_colors": {
+                    "0": "2e333a",
+                    "1": "4d4d4d",
+                    "2": "808080",
+                    "3": "bfbfbf",
+                    "4": "ffffff"
+                }
+            },
+            "green": {
+                "text_color": "c96245",
+                "level_colors": {
+                    "0": "2e333a",
+                    "1": "20432b",
+                    "2": "2f6b38",
+                    "3": "52a44e",
+                    "4": "6bd064"
+                }
+            },
+            "orange": {
+                "text_color": "c96245",
+                "level_colors": {
+                    "0": "2e333a",
+                    "1": "573a0f",
+                    "2": "8a590f",
+                    "3": "c2780a",
+                    "4": "ff9900"
+                }
+            }
+        },
+        "size": {
+            "width": "10",
+            "height": "10"
+        },
+        "margin": "3",
+        "start_position": {
+            "x": "45",
+            "y": "65"
+        }
+    },
+    "container": {
+        "theme": {
+            "dark": {
+                "color": "23272d"
+            },
+            "light": {
+                "color": "ffffff"
+            }
+        },
+        "size": {
+            "large": {
+                "width": "850",
+                "height": "180"
+            },
+            "middle": {
+                "width": "450",
+                "height": "180"
+            },
+            "small": {
+                "width": "260",
+                "height": "180"
+            }
+        }
+    },
+    "title": {
+        "start_position": {
+            "x": "15",
+            "y": "30"
+        }
+    }
+}
