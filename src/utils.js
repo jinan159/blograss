@@ -1,5 +1,5 @@
-const renderData = require('./config/render-data.json');
-const blograssApiData = require('../src/config/blograss-api.json');
+const renderData = require('./json/render-data.json');
+const blograssApiData = require('./json/blograss-api.json');
 
 const themeUtils = {
 

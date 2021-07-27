@@ -1,6 +1,6 @@
 const { describe, test, expect } = require("@jest/globals");
-const renderData = require('../src/config/render-data.json');
-const blograssApiData = require('../src/config/blograss-api.json');
+const renderData = require('../src/json/render-data.json');
+const blograssApiData = require('../src/json/blograss-api.json');
 
 describe('themeUtils test', () => {
     

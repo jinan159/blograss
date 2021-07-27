@@ -1,9 +1,66 @@
-module.exports = (req, res) => {
+const { request, ClientRequest, IncomingMessage } = require('http');
+const TistoryModel = require('../model/TistoryModel');
+const { themeUtils, grassUtils, blograssApiUtils } = require('../src/utils');
 
+module.exports = async (req, res) => {
+
+    // -- Request Query ------------------------------------------------------------------------------------------------------------
     const {
-        color = "green"
+        // blog query
+        blog_type = "",
+        blog_name = "",
+        
+        // grass query
+        theme = themeUtils.getContainerThemeColor('dark'),    // background theme
+        text_color = themeUtils.getTextThemeColor('green'),   // title text color 
+        grass_color = themeUtils.getGrassThemeColor('green'), // grass color
+        grass_size = grassUtils.getContainerSize('large'),    // grass container size
     } = req.query;
 
+    // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
+    var isError = false;
+    var error_message_array = [];
+    var bold_open_tag = `<span style="font-weight: bold;">`;
+    var bold_close_tag = `</span>`;
+    var red_bold_open_tag = `<span style="color: #ff0000; font-weight: bold;">`;
+    var red_bold_close_tag = `</span>`;
+
+    // check blog_type
+    if (!blograssApiUtils.isBlogTypeExist(blog_type)) {
+        isError = true;
+        error_message_array.push(`blog_type=${bold_open_tag}${blog_type}${bold_close_tag} is ${red_bold_open_tag}not${red_bold_close_tag} provided`);
+    }
+
+    // check blog_name
+    if (!blog_name) {
+        isError = true;
+        error_message_array.push(`${bold_open_tag}blog_name${bold_close_tag} is required.`);
+    }
+    
+    // response error page(html)
+    if (isError && error_message_array) {
+        
+        var error_message_script = "";
+        
+        for (var i in error_message_array) {
+            error_message_script += `<li>${error_message_array[i]}</li>`;
+        }
+
+        res.setHeader("Content-Type", "text/html");
+        res.send(`
+            <h1>Error</h1>
+            <ul>${error_message_script}</ul>
+            <p>Please check usage from here : ${bold_open_tag}<a href="https://github.com/jinan159/blograss#usage">https://github.com/jinan159/blograss#usage</a>${bold_close_tag}</p>
+            `);
+        return;
+    }
+
+    // TODO develop model layer(select blog data) ;
+    var mockData = require('../src/json/mock-data.json'); // for test
+    
+    // TODO develop render layer
+
+    // -- Render Blograss ------------------------------------------------------------------------------------------------------------
     var size = 10;
     var x_start = 45;
     var y_start = 65;
@@ -13,7 +70,7 @@ module.exports = (req, res) => {
     var grassScript = "";
 
     for (var i=0; i<(7*5*12); i++) {
-        grassScript += addGrass(size, x, y, color, (i%6)) + "\n            ";
+        grassScript += addGrass(size, x, y, grass_color, (i%6)) + "\n            ";
         y += size + margin;
         if ((i+1) % 7 == 0) {
             x += size + margin;
@@ -25,7 +82,8 @@ module.exports = (req, res) => {
 
     res.send(`
     <svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">
-        <rect width="850" height="180" rx="5" ry="5" style="fill: rgb(35,39,45);"/>
+        <rect width="850" height="180" rx="5" ry="5" style="fill: #ffffff;"/>
+        <rect width="850" height="180" rx="5" ry="5" style="fill: #23272d;"/>
         <text 
             x="15" y="30" 
             fill="#60cd6f" font-size="18" font-family="Tahoma">
