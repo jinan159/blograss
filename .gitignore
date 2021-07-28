@@ -21,5 +21,12 @@ yarn-error.log*
 *.sln
 *.sw?
 
-.stuff
+# vercel
 .vercel
+
+# jest
+coverage
+
+# etc
+.stuff
+goorm.manifest
