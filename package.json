@@ -1,28 +1,32 @@
 {
-  "name": "blograss",
-  "version": "1.0.0",
-  "description": "Easy to show your passion of blogging",
-  "main": "api/index.js",
-  "scripts": {
-    "start": "vercel dev",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jinan159/blograss.git"
-  },
-  "keywords": [
-    "blograss"
-  ],
-  "author": "jinan159",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jinan159/blograss/issues"
-  },
-  "homepage": "https://github.com/jinan159/blograss#readme",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "dotenv": "^10.0.0",
-    "jest": "^27.0.6"
-  }
+	"name": "blograss",
+	"version": "1.0.0",
+	"description": "Easy to show your passion of blogging",
+	"main": "api/index.js",
+	"scripts": {
+		"test": "jest",
+		"test:coverage": "jest --coverage",
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jinan159/blograss.git"
+	},
+	"keywords": [
+		"blograss"
+	],
+	"author": "jinan159",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/jinan159/blograss/issues"
+	},
+	"homepage": "https://github.com/jinan159/blograss#readme",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"dotenv": "^10.0.0"
+	},
+	"devDependencies": {
+		"husky": "^7.0.1",
+		"jest": "^27.0.6"
+	}
 }
