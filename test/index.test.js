@@ -124,4 +124,6 @@ describe('index.js test', ()=>{
         expect(responseMock.RESPONSE_DATA).toBeDefined();
         expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
     });
+	
+	
 });

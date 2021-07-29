@@ -146,7 +146,7 @@ const grassUtils = {
 
 const blograssApiUtils = {
 
-    blogTypeDefault: "tistory",
+    blogTypeDefault: blograssApiData.blog.tistory.name,
 
     /**
      * check blog_type is exist
@@ -155,6 +155,14 @@ const blograssApiUtils = {
     isBlogTypeExist: function(blog_type) {
         return Object.keys(blograssApiData.blog).includes(blog_type);
     },
+	
+	/**
+     * get all blog list
+     * @param {String} blog_type 
+     */
+	getBlogs: function() {
+		return Object.keys(blograssApiData.blog);
+	},
 
     /**
     * get all blog info

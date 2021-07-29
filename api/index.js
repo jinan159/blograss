@@ -1,8 +1,32 @@
 const { themeUtils, grassUtils, blograssApiUtils } = require('../src/utils');
+const Joi = require('joi');
 
 module.exports = async (req, res) => {
 
-    // -- Request Query ------------------------------------------------------------------------------------------------------------
+    // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
+	
+	// joi api validation schema
+    const schema = Joi.object({
+        blog_type : Joi.string().required(),
+        blog_name: Joi.string().required(),
+		
+        theme: Joi.string(),
+        text_color: Joi.string(),
+        grass_color: Joi.string(),
+		grass_size: Joi.string(),
+    });
+	
+	// joi validation
+    const req_validation = schema.validate(req.query);
+
+    // validation error
+    if (req_validation.error) {
+		res.setHeader("Content-Type", "text/html");
+		res.send(req_validation.error.details[0].message);
+		return;
+	}
+	
+	// -- Request Query ------------------------------------------------------------------------------------------------------------
     const {
         // blog query
         blog_type = "",
@@ -14,51 +38,17 @@ module.exports = async (req, res) => {
         grass_color = themeUtils.getGrassThemeColor('green'), // grass color
         grass_size = grassUtils.getContainerSize('large'),    // grass container size
     } = req.query;
-
-    // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
-    var isError = false;
-    var error_message_array = [];
-    var bold_open_tag = `<span style="font-weight: bold;">`;
-    var bold_close_tag = `</span>`;
-    var red_bold_open_tag = `<span style="color: #ff0000; font-weight: bold;">`;
-    var red_bold_close_tag = `</span>`;
-
-    // check blog_type
-    if (!blograssApiUtils.isBlogTypeExist(blog_type)) {
-        isError = true;
-        error_message_array.push(`blog_type=${bold_open_tag}${blog_type}${bold_close_tag} is ${red_bold_open_tag}not${red_bold_close_tag} provided`);
-    }
-
-    // check blog_name
-    if (!blog_name) {
-        isError = true;
-        error_message_array.push(`${bold_open_tag}blog_name${bold_close_tag} is required.`);
-    }
-    
-    // response error page(html)
-    if (isError && error_message_array) {
-        
-        var error_message_script = "";
-        
-        for (var i in error_message_array) {
-            error_message_script += `<li>${error_message_array[i]}</li>`;
-        }
-
-        res.setHeader("Content-Type", "text/html");
-        res.send(`
-            <h1>Error</h1>
-            <ul>${error_message_script}</ul>
-            <p>Please check usage from here : ${bold_open_tag}<a href="https://github.com/jinan159/blograss#usage">https://github.com/jinan159/blograss#usage</a>${bold_close_tag}</p>
-            `);
-        return;
-    }
+	
+	// -- Get Blog data ------------------------------------------------------------------------------------------------------------
 
     // TODO develop model layer(select blog data) ;
-    var mockData = require('../src/json/mock-data.json'); // for test
-    
-    // TODO develop render layer
+    const mockData = require('../src/json/mock-data.json'); // for test
+	
 
     // -- Render Blograss ------------------------------------------------------------------------------------------------------------
+	
+	// TODO develop render layer
+	
     var size = 10;
     var x_start = 45;
     var y_start = 65;

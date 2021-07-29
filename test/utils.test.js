@@ -128,7 +128,12 @@ describe('blograssApiUtils test', () => {
     test('isContainerSizeExist blog type jwkim  not exist', () => {
         expect(blograssApiUtils.isBlogTypeExist('jwkim')).toBeFalsy();
     });
-
+	
+	// == getBlogs ==================================
+    test('getBlogs return array of blogs', () => {
+        expect(blograssApiUtils.getBlogs()).toEqual(Object.keys(blograssApiData.blog));
+    });
+	
 
     // == getBlogInfos ==================================
     test('getBlogInfos return all blog informations', () => {
