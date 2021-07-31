@@ -41,14 +41,14 @@ describe('index.js test', ()=>{
         expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
     });
 
-    test('index.js api call with \'theme\' parameter', async ()=>{
+    test('index.js api call with \'background_color\' parameter', async ()=>{
 
         // set request
         requestMock.method = 'GET';
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            theme: "dark",
+            background_color: "dark",
         }
 
         await index(requestMock, responseMock);
@@ -113,7 +113,7 @@ describe('index.js test', ()=>{
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            theme: "dark",
+            background_color: "dark",
             text_color: "green",
             grass_color: "green",
             grass_size: "large",

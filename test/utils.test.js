@@ -118,7 +118,7 @@ describe('grassUtils test', () => {
 
     // == getGrassHeightByDay ==================================
     test('getGrassHeightByDay return height of sunday grass', () => {
-        expect(grassUtils.getGrassHeightByDay('2021-08-01')).toEqual(renderData.grass.start_position.y);
+        expect(grassUtils.getGrassHeightByDay(new Date('2021-08-01'))).toEqual(0);
     });
 });
 
@@ -153,5 +153,21 @@ describe('blograssApiUtils test', () => {
     });
     test('getBlogInfo return default tistory blog information', () => {
         expect(blograssApiUtils.getBlogInfo('jwkim')).toEqual(blograssApiData.blog.tistory);
+    });
+});
+
+describe('dateUtils test', () => {
+    
+    const { dateUtils } = require("../src/utils");
+
+    // == addDays ==================================
+    test('addDays add 2 days', () => {
+        expect(dateUtils.addDays(new Date('2021-01-01'), 2)).toEqual(new Date('2021-01-03'));
+    });
+    test('addDays minus 2 days', () => {
+        expect(dateUtils.addDays(new Date('2021-01-01'), -2)).toEqual(new Date('2020-12-30'));
+    });
+    test('addDays add 0 days', () => {
+        expect(dateUtils.addDays(new Date('2021-01-01'), 0)).toEqual(new Date('2021-01-01'));
     });
 });

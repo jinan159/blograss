@@ -111,6 +111,24 @@ const grassUtils = {
     },
 
     /**
+     * get grass height by day
+     * ex) sunday: top of week
+     * @param {Date} value 
+     */
+     getGrassHeightByDay: function(date) {
+        if (date.getDate == undefined) throw new Error(`'date' type is required`);
+    
+        // console.log(new Intl.DateTimeFormat('ko-KR', { weekday: 'long'}).format(date));
+        var day = date.getDay();
+    
+        var grassStartPoint = grassUtils.getGrassStartPosition();
+        var size = grassUtils.getGrassSize();
+        var margin = grassUtils.getGrassMargin();
+        
+        return (size.height + margin) * day;
+    },
+
+    /**
      * check size is exist
      * @param {String} size
      * @returns 
@@ -144,23 +162,6 @@ const grassUtils = {
      */
      getTitleStartPosition: function() {
         return renderData.title.start_position;
-    },
-
-    /**
-     * 
-     * @param {String} value 
-     */
-    getGrassHeightByDay: function(dateString) {
-        var date = new Date(dateString);
-    
-        // console.log(new Intl.DateTimeFormat('ko-KR', { weekday: 'long'}).format(date));
-        var day = date.getDay();
-    
-        var grassStartPoint = grassUtils.getGrassStartPosition();
-        var size = grassUtils.getGrassSize();
-        var margin = grassUtils.getGrassMargin();
-        
-        return String(Number.parseInt(grassStartPoint.y) + (Number.parseInt(size.height) + Number.parseInt(margin)) * day);
     }
 }
 
@@ -206,4 +207,19 @@ const blograssApiUtils = {
     },
 }
 
-module.exports = { themeUtils, grassUtils, blograssApiUtils }
+const dateUtils = {
+    
+    /**
+     * add days and return calculated date
+     * @param {Date} date 
+     * @param {Number} days 
+     */
+    addDays(date, days) {
+        if (date.getDate == undefined) throw new Error(`'date' type is required`);
+        var preDate = new Date(date.getTime());
+        var newDate = preDate.setDate(preDate.getDate() + days);
+        return new Date(newDate);
+    }
+}
+
+module.exports = { themeUtils, grassUtils, blograssApiUtils, dateUtils }
