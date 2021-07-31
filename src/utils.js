@@ -3,8 +3,9 @@ const blograssApiData = require('./json/blograss-api.json');
 
 const themeUtils = {
 
-    grassThemeDefault: "green",
-    containerThemeDefault: "dark",
+    grassDefaultTheme: "green",
+    textDefaultTheme: "green",
+    rectDefaultTheme: "dark",
 
     /**
      * check theme is exist
@@ -24,7 +25,7 @@ const themeUtils = {
         if (this.isGrassThemeExist(theme)) {
             return renderData.grass.theme[theme].level_colors;
         } else {
-            return renderData.grass.theme[this.grassThemeDefault].level_colors;
+            return renderData.grass.theme[this.grassDefaultTheme].level_colors;
         }
     },
 
@@ -41,7 +42,7 @@ const themeUtils = {
         if (this.isGrassThemeExist(theme)) {
             return renderData.grass.theme[theme].level_colors[level];
         } else {
-            return renderData.grass.theme[this.grassThemeDefault].level_colors[level];
+            return renderData.grass.theme[this.grassDefaultTheme].level_colors[level];
         }        
     },
 
@@ -50,20 +51,20 @@ const themeUtils = {
      * @param {String} theme 
      * @returns 
      */
-    isContainerThemeExist: function(theme) {
-        return Object.keys(renderData.container.theme).includes(theme);
+    isRectThemeExist: function(theme) {
+        return Object.keys(renderData.rect.theme).includes(theme);
     },
 
     /**
-     * get container theme
+     * get rect theme
      * @param {String} theme 
      * @returns 
      */
-    getContainerThemeColor: function (theme) {
-        if (this.isContainerThemeExist(theme)) {
-            return renderData.container.theme[theme].color;
+    getRectThemeColor: function (theme) {
+        if (this.isRectThemeExist(theme)) {
+            return renderData.rect.theme[theme].color;
         } else {
-            return renderData.container.theme[this.containerThemeDefault].color;
+            return renderData.rect.theme[this.rectDefaultTheme].color;
         }
     },
 
@@ -76,12 +77,14 @@ const themeUtils = {
         if (this.isGrassThemeExist(theme)) {
             return renderData.grass.theme[theme].text_color;
         } else {
-            return renderData.grass.theme[this.grassThemeDefault].text_color;
+            return renderData.grass.theme[this.grassDefaultTheme].text_color;
         }
     },
 }
 
 const grassUtils = {
+
+    grassDefaultSize: "green",
 
     /**
      * get grass size
@@ -112,25 +115,25 @@ const grassUtils = {
      * @param {String} size
      * @returns 
      */
-     isContainerSizeExist: function(size) {
-        return Object.keys(renderData.container.size).includes(size);
+     isRectSizeExist: function(size) {
+        return Object.keys(renderData.rect.size).includes(size);
     },
 
     /**
-     * get container size
+     * get rect size
      * @param {String} size 
      * @returns 
      */
-    getContainerSize: function(size) {        
-        if (this.isContainerSizeExist(size)) {
+    getRectSize: function(size) {        
+        if (this.isRectSizeExist(size)) {
             return {
-                width: renderData.container.size[size].width,
-                height: renderData.container.size[size].height,
+                width: renderData.rect.size[size].width,
+                height: renderData.rect.size[size].height,
             }
         } else {
             return {
-                width: renderData.container.size["large"].width,
-                height: renderData.container.size["large"].height,
+                width: renderData.rect.size["large"].width,
+                height: renderData.rect.size["large"].height,
             }
         }
     },
@@ -141,12 +144,29 @@ const grassUtils = {
      */
      getTitleStartPosition: function() {
         return renderData.title.start_position;
+    },
+
+    /**
+     * 
+     * @param {String} value 
+     */
+    getGrassHeightByDay: function(dateString) {
+        var date = new Date(dateString);
+    
+        // console.log(new Intl.DateTimeFormat('ko-KR', { weekday: 'long'}).format(date));
+        var day = date.getDay();
+    
+        var grassStartPoint = grassUtils.getGrassStartPosition();
+        var size = grassUtils.getGrassSize();
+        var margin = grassUtils.getGrassMargin();
+        
+        return String(Number.parseInt(grassStartPoint.y) + (Number.parseInt(size.height) + Number.parseInt(margin)) * day);
     }
 }
 
 const blograssApiUtils = {
 
-    blogTypeDefault: blograssApiData.blog.tistory.name,
+    blogDefaultType: "tistory",
 
     /**
      * check blog_type is exist
@@ -181,7 +201,7 @@ const blograssApiUtils = {
         if (this.isBlogTypeExist(blog_type)) {
             return blograssApiData.blog[blog_type];
         } else {
-            return blograssApiData.blog[this.blogTypeDefault]; // tistory
+            return blograssApiData.blog[this.blogDefaultType]; // tistory
         }
     },
 }

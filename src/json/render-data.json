@@ -11,8 +11,8 @@
                     "4": "c96245"
                 }
             },
-            "gray": {
-                "text_color": "c96245",
+            "white": {
+                "text_color": "ffffff",
                 "level_colors": {
                     "0": "2e333a",
                     "1": "4d4d4d",
@@ -22,7 +22,7 @@
                 }
             },
             "green": {
-                "text_color": "c96245",
+                "text_color": "6bd064",
                 "level_colors": {
                     "0": "2e333a",
                     "1": "20432b",
@@ -32,7 +32,7 @@
                 }
             },
             "orange": {
-                "text_color": "c96245",
+                "text_color": "ff9900",
                 "level_colors": {
                     "0": "2e333a",
                     "1": "573a0f",
@@ -52,7 +52,7 @@
             "y": "65"
         }
     },
-    "container": {
+    "rect": {
         "theme": {
             "dark": {
                 "color": "23272d"

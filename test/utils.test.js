@@ -16,8 +16,8 @@ describe('themeUtils test', () => {
 
     
     // == getGrassThemeColors ==================================
-    test('getGrassThemeColors return gray theme', () => {
-        expect(themeUtils.getGrassThemeColors('gray')).toEqual(renderData.grass.theme.gray.level_colors);
+    test('getGrassThemeColors return white theme', () => {
+        expect(themeUtils.getGrassThemeColors('white')).toEqual(renderData.grass.theme.white.level_colors);
     });
     test('getGrassThemeColors return default green theme', () => {
         expect(themeUtils.getGrassThemeColors('jwkim')).toEqual(renderData.grass.theme.green.level_colors);
@@ -25,38 +25,38 @@ describe('themeUtils test', () => {
 
 
     // == getGrassThemeColor ==================================
-    test('getThemeLevelColor return gray grass 2 theme', () => {
-        expect(themeUtils.getGrassThemeColor('gray', 2)).toEqual(renderData.grass.theme.gray.level_colors[2]);
+    test('getThemeLevelColor return white grass 2 theme', () => {
+        expect(themeUtils.getGrassThemeColor('white', 2)).toEqual(renderData.grass.theme.white.level_colors[2]);
     });
     test('getThemeLevelColor return default green grass 2 theme', () => {
         expect(themeUtils.getGrassThemeColor('jwkim', 2)).toEqual(renderData.grass.theme.green.level_colors[2]);
     });
     test('getThemeLevelColor return grass 0 when value < 1', () => {
-        expect(themeUtils.getGrassThemeColor('green', -1)).toEqual(renderData.grass.theme.gray.level_colors[0]);
+        expect(themeUtils.getGrassThemeColor('green', -1)).toEqual(renderData.grass.theme.white.level_colors[0]);
     });
     test('getThemeLevelColor return grass 4 when value > 4', () => {
         expect(themeUtils.getGrassThemeColor('green', 5)).toEqual(renderData.grass.theme.green.level_colors[4]);
     });
 
 
-    // == isContainerThemeExist ==================================
-    test('isContainerThemeExist dark theme is exist', () => {
-        expect(themeUtils.isContainerThemeExist('dark')).toBeTruthy();
+    // == isRectThemeExist ==================================
+    test('isRectThemeExist dark theme is exist', () => {
+        expect(themeUtils.isRectThemeExist('dark')).toBeTruthy();
     });
-    test('isContainerThemeExist jwkim theme is not exist', () => {
-        expect(themeUtils.isContainerThemeExist('jwkim')).toBeFalsy();
+    test('isRectThemeExist jwkim theme is not exist', () => {
+        expect(themeUtils.isRectThemeExist('jwkim')).toBeFalsy();
     });
 
 
-    // == getContainerThemeColor ==================================
-    test('getContainerThemeColor return light theme', () => {
-        expect(themeUtils.getContainerThemeColor('light')).toEqual(renderData.container.theme.light.color);
+    // == getRectThemeColor ==================================
+    test('getRectThemeColor return light theme', () => {
+        expect(themeUtils.getRectThemeColor('light')).toEqual(renderData.rect.theme.light.color);
     });
-    test('getContainerThemeColor return dark theme', () => {
-        expect(themeUtils.getContainerThemeColor('dark')).toEqual(renderData.container.theme["dark"].color);
+    test('getRectThemeColor return dark theme', () => {
+        expect(themeUtils.getRectThemeColor('dark')).toEqual(renderData.rect.theme["dark"].color);
     });
-    test('getContainerThemeColor return default dark theme', () => {
-        expect(themeUtils.getContainerThemeColor('jwkim')).toEqual(renderData.container.theme.dark.color);
+    test('getRectThemeColor return default dark theme', () => {
+        expect(themeUtils.getRectThemeColor('jwkim')).toEqual(renderData.rect.theme.dark.color);
     });
 
 
@@ -92,27 +92,33 @@ describe('grassUtils test', () => {
     });
 
 
-    // == isContainerSizeExist ==================================
-    test('isContainerSizeExist large size is exist', () => {
-        expect(grassUtils.isContainerSizeExist('large')).toBeTruthy();
+    // == isRectSizeExist ==================================
+    test('isRectSizeExist large size is exist', () => {
+        expect(grassUtils.isRectSizeExist('large')).toBeTruthy();
     });
-    test('isContainerSizeExist jwkim size is not exist', () => {
-        expect(grassUtils.isContainerSizeExist('jwkim')).toBeFalsy();
+    test('isRectSizeExist jwkim size is not exist', () => {
+        expect(grassUtils.isRectSizeExist('jwkim')).toBeFalsy();
     });
 
 
-    // == getContainerSize ==================================
-    test('getContainerSize return small size', () => {
-        expect(grassUtils.getContainerSize('small')).toEqual(renderData.container.size.small);
+    // == getRectSize ==================================
+    test('getRectSize return small size', () => {
+        expect(grassUtils.getRectSize('small')).toEqual(renderData.rect.size.small);
     });
-    test('getContainerSize return default large size', () => {
-        expect(grassUtils.getContainerSize('jwkim')).toEqual(renderData.container.size.large);
+    test('getRectSize return default large size', () => {
+        expect(grassUtils.getRectSize('jwkim')).toEqual(renderData.rect.size.large);
     });
 
 
     // == getTitleStartPosition ==================================
     test('getTitleStartPosition return title start position', () => {
         expect(grassUtils.getTitleStartPosition()).toEqual(renderData.title.start_position);
+    });
+
+
+    // == getGrassHeightByDay ==================================
+    test('getGrassHeightByDay return height of sunday grass', () => {
+        expect(grassUtils.getGrassHeightByDay('2021-08-01')).toEqual(renderData.grass.start_position.y);
     });
 });
 
@@ -125,7 +131,7 @@ describe('blograssApiUtils test', () => {
     test('isBlogTypeExist blog type tistory is exist', () => {
         expect(blograssApiUtils.isBlogTypeExist('tistory')).toBeTruthy();
     });
-    test('isContainerSizeExist blog type jwkim  not exist', () => {
+    test('isRectSizeExist blog type jwkim  not exist', () => {
         expect(blograssApiUtils.isBlogTypeExist('jwkim')).toBeFalsy();
     });
 	

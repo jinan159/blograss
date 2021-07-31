@@ -7,7 +7,7 @@ describe('title.js test', ()=>{
     // == render ==================================
     test('title render test',()=>{
         const theme = 'green';
-        const text = 'jwkim96\'s Tistory Grass';
+        const text = 'jwkim96\'s tistory Blograss';
 
         // test data
         const {
@@ -16,6 +16,6 @@ describe('title.js test', ()=>{
         } = grassUtils.getTitleStartPosition();
         const fillColor = themeUtils.getTextThemeColor('green');
 
-        expect(title.render(theme, text)).toEqual(`<text x="${x}" y="${y}" fill="#${fillColor}" font-size="18" font-family="Tahoma">${text}</text>`);
+        expect(title.render("tistory", "jwkim96", text)).toEqual(`<text x="${x}" y="${y}" fill="#${fillColor}" font-size="18" font-family="Tahoma">${text}</text>`);
     })
 });
