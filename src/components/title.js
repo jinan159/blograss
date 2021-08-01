@@ -1,4 +1,4 @@
-const { grassUtils, themeUtils } = require("./utils");
+const { grassUtils, themeUtils } = require("../utils/util");
 
 /**
  * 

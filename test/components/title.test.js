@@ -1,8 +1,8 @@
 const { describe, expect } = require("@jest/globals");
-const { grassUtils, themeUtils } = require("../src/utils");
+const { grassUtils, themeUtils } = require("../../src/utils/util");
 
 describe('title.js test', ()=>{
-    const title = require('../src/title');
+    const title = require('../../src/components/title');
     
     // == render ==================================
     test('title render test',()=>{

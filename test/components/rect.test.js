@@ -1,10 +1,10 @@
 const { describe, expect } = require("@jest/globals");
-const renderData = require('../src/json/render-data.json');
-const { themeUtils, grassUtils } = require("../src/utils");
+const renderData = require('../../src/json/render-data.json');
+const { themeUtils, grassUtils } = require("../../src/utils/util");
 
 describe('rect.js test', ()=>{
     
-    const rect = require('../src/rect');
+    const rect = require('../../src/components/rect');
     
     // == render ==================================
     test('rect small size, dark theme render test',()=>{

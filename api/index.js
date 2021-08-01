@@ -1,10 +1,10 @@
-const { themeUtils, grassUtils, blograssApiUtils, dateUtils } = require('../src/utils');
+const { themeUtils, grassUtils, blogApiUtils, dateUtils } = require('../src/utils/util');
 const Joi = require('joi');
 const component = {
-    rect: require('../src/rect'),
-    title: require('../src/title'),
-    container: require('../src/container'),
-    grass: require('../src/grass')
+    rect: require('../src/components/rect'),
+    title: require('../src/components/title'),
+    container: require('../src/components/container'),
+    grass: require('../src/components/grass')
 }
 
 
@@ -120,7 +120,7 @@ module.exports = async (req, res) => {
     var yearDate = Number.parseInt(365/div);
     var blogDataToRender = blogData.filter(data => new Date(data.date) > startDate && new Date(data.date) < endDate );
 
-    console.log(blogDataToRender);
+    // console.log(blogDataToRender);
     
     var blograssRect = component.rect.render(renderData.rectSize, renderData.rectColor);
     var blograssTitle = component.title.render(blog_type, blog_name, renderData.textColor);

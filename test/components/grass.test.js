@@ -1,8 +1,8 @@
 const { describe, expect } = require("@jest/globals");
-const { grassUtils, themeUtils } = require("../src/utils");
+const { grassUtils, themeUtils } = require("../../src/utils/util");
 
 describe('grass.js test', ()=>{
-    const grass = require('../src/grass');
+    const grass = require('../../src/components/grass');
     
     // == render ==================================
     test('grass render test',()=>{
