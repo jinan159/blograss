@@ -2,7 +2,7 @@ const renderData = require('../json/render-data.json');
 
 module.exports = {
 
-    grassDefaultSize: "green",
+    rectDefaultSize: "large",
 
     /**
      * get grass size
@@ -67,8 +67,8 @@ module.exports = {
             }
         } else {
             return {
-                width: renderData.rect.size["large"].width,
-                height: renderData.rect.size["large"].height,
+                width: renderData.rect.size[this.rectDefaultSize].width,
+                height: renderData.rect.size[this.rectDefaultSize].height,
             }
         }
     },
