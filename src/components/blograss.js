@@ -1,7 +1,7 @@
 const { grassUtils, themeUtils, dateUtils } = require("../utils/util");
 const component = {
     rect: require('./rect'),
-    title: require('./title'),
+    text: require('./text'),
     container: require('./container'),
     grass: require('./grass')
 }
@@ -13,8 +13,21 @@ const component = {
  * @returns 
  */
 const render = (renderData, blogData, levelData) => {
+
     var blograssScript = "";
+
+    // -- rect script ------------------------------------------------------------------------------------------------------------
+    blograssScript += component.rect.render(renderData.rectSize, renderData.rectColor);
+
+
+    // -- title script ------------------------------------------------------------------------------------------------------------
+    var titlePosition = grassUtils.getTitleStartPosition();
+    var titleText = `${renderData.blog_name}'s ${renderData.blog_type} blograss`;
     
+    blograssScript += component.text.render(titlePosition.x, titlePosition.y, titleText, 18, renderData.textColor);;
+    
+
+    // -- grassContainer script ------------------------------------------------------------------------------------------------------------
     var {x, y} = grassUtils.getGrassStartPosition();
     
     var startDate = new Date(`${renderData.year}-01-01`);
@@ -56,30 +69,15 @@ const render = (renderData, blogData, levelData) => {
         }
     }
 
-    blograssScript += component.rect.render(renderData.rectSize, renderData.rectColor);;
-    blograssScript += component.title.render(renderData.blog_type, renderData.blog_name, renderData.textColor);;
     blograssScript += grassContainer;
-    blograssScript += 
-    `
-        <g>
-            <!-- Days  dis=(y:26) -->
-            <text 
-                x="17" y="88" 
-                fill="#${themeUtils.getTextThemeColor(renderData.textColor)}" font-size="12" font-family="Tahoma">
-                Mon
-            </text>
-            <text 
-                x="17" y="114" 
-                fill="#${themeUtils.getTextThemeColor(renderData.textColor)}" font-size="12" font-family="Tahoma">
-                Wed
-            </text>
-            <text 
-                x="17" y="140" 
-                fill="#${themeUtils.getTextThemeColor(renderData.textColor)}" font-size="12" font-family="Tahoma">
-                Fri
-            </text>
-        </g>
-    `;
+
+
+    // -- daysContainer script ------------------------------------------------------------------------------------------------------------
+    var daysScript = component.text.render(0, 0, "Mon", 12, renderData.textColor)
+                    + component.text.render(0, 26, "Wed", 12, renderData.textColor)
+                    + component.text.render(0, 52, "Fri", 12, renderData.textColor);  
+    var daysContainer = component.container.render(17, 88, daysScript);
+    blograssScript += daysContainer;
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
 }
