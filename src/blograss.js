@@ -1,11 +1,11 @@
-const RenderInfoDTO = require("../dto/RenderInfoDTO");
-const BlogInfoDTO = require("../dto/BlogInfoDTO");
-const { grassUtils, dateUtils } = require("../utils/util");
+const RenderInfoDTO = require("./dto/RenderInfoDTO");
+const BlogInfoDTO = require("./dto/BlogInfoDTO");
+const { grassUtils, dateUtils } = require("./utils/util");
 const component = {
-    rect: require('./rect'),
-    text: require('./text'),
-    container: require('./container'),
-    grass: require('./grass')
+    rect: require('./components/rect'),
+    text: require('./components/text'),
+    container: require('./components/container'),
+    grass: require('./components/grass')
 }
 
 /**
@@ -46,7 +46,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     
     // filter date between startDate and endDate
     var blogInfoToRender = blogInfoDTOArray.filter(info => new Date(info.date) > startDate && new Date(info.date) < endDate );
-    
+
     // make grassScript
     var {x, y} = grassUtils.getGrassStartPosition();
     var grassComponent = "";
