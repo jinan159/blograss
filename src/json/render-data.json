@@ -21,6 +21,16 @@
                     "4": "ffffff"
                 }
             },
+            "black": {
+                "text_color": "000000",
+                "level_colors": {
+                    "0": "2e333a",
+                    "1": "737373",
+                    "2": "4d4d4d",
+                    "3": "262626",
+                    "4": "000000"
+                }
+            },
             "green": {
                 "text_color": "6bd064",
                 "level_colors": {
@@ -49,7 +59,7 @@
         "margin": 3,
         "start_position": {
             "x": 45,
-            "y": 63
+            "y": 73
         }
     },
     "rect": {
@@ -58,21 +68,21 @@
                 "color": "23272d"
             },
             "light": {
-                "color": "ffffff"
+                "color": "e6e6e6"
             }
         },
         "size": {
             "large": {
                 "width": 750,
-                "height": 170
+                "height": 180
             },
             "middle": {
                 "width": 412,
-                "height": 170
+                "height": 180
             },
             "small": {
                 "width": 242,
-                "height": 170
+                "height": 180
             }
         }
     },
