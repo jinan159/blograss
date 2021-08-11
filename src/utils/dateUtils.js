@@ -34,5 +34,5 @@ module.exports = {
     getLastDayOfMonth(year, month) {
         if (month < 1 || month > 12) throw new Error(`'month' should be between 1 and 12`);
         return new Date(year, month-1, 0).getDate();
-    }
+    },
 }

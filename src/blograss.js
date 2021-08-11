@@ -51,6 +51,8 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     var {x, y} = grassUtils.getGrassStartPosition();
     var grassComponent = "";
     var grassContainer = "";
+    var monthScript = "";
+    var prevMonth = -1;
 
     for (var i=0; i<yearDate; i++) {
         // set grass initial data
@@ -62,7 +64,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
         // add grass of week
         grassComponent += component.grass.render(renderInfoDTO.grass_color, level, 0, height);
 
-        // if 'saturday' or 'end of data' then, finish week
+        // if 'saturday' of 'first of month' or 'end of data' then, finish week
         if (grassDate.getDay() == 6 || i == yearDate - 1) {
             grassContainer += component.container.render(x, y, grassComponent);
             grassComponent = "";
@@ -70,6 +72,14 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
             var width = grassUtils.getGrassSize().width;
             var margin = grassUtils.getGrassMargin();
             x += width + margin;
+        } 
+        // if 'sunday', and different from month of prev week's sunday
+        else if (grassDate.getDay() == 0 && prevMonth != grassDate.getMonth()) {
+            var monthFormat = new Intl.DateTimeFormat('us-EN', {month: 'short'}).format(grassDate);
+            var monthText = `${monthFormat}/${grassDate.getDate()}`;
+            monthScript += component.text.render(x, y-10, monthText, 12, renderInfoDTO.text_color);
+
+            prevMonth = grassDate.getMonth();
         }
     }
 
@@ -80,8 +90,9 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     var daysScript = component.text.render(0, 0, "Mon", 12, renderInfoDTO.text_color)
                     + component.text.render(0, 26, "Wed", 12, renderInfoDTO.text_color)
                     + component.text.render(0, 52, "Fri", 12, renderInfoDTO.text_color);
-    var daysContainer = component.container.render(17, 88, daysScript);
+    var daysContainer = component.container.render(17, 96, daysScript);
     blograssScript += daysContainer;
+    blograssScript += monthScript;
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
 }

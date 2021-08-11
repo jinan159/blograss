@@ -3,6 +3,9 @@ const Joi = require('joi');
 const blograss = require('../src/blograss');
 const RenderInfoDTO = require('../src/dto/RenderInfoDTO');
 const BlogInfoDTO = require('../src/dto/BlogInfoDTO');
+const dotenv = require('dotenv');
+const TistoryModel = require('../src/model/TistoryModel');
+dotenv.config();
 
 module.exports = async (req, res) => {
 
@@ -54,21 +57,24 @@ module.exports = async (req, res) => {
                                         , background_color
                                         , text_color
                                         , grass_color
-                                        , year);
+                                        , Number.parseInt(year));
+
 
     // -- Data preprocessing ------------------------------------------------------------------------------------------------------------
 
-    // TODO develop model layer(select blog data) - should be return BlogInfoDTO[] type
-    const blogPostData = require('../src/json/mock-data.json'); // mock data
-    
-    // push blogInfo to DTO array
-    var blogInfoArray = [];
-    blogPostData.map(blogPost => {
-        blogInfoArray.push(new BlogInfoDTO(blogPost.date, blogPost.post_count, 0));
-    });
+    var blogInfoArray = []
+    var blogInfoDTOArray = []
+    try {
 
-    // get leveled blog info
-    var blogInfoDTOArray = grassUtils.getLeveledBlogInfo(blogInfoArray);
+        var tistoryModel = new TistoryModel();        
+        blogInfoArray = await tistoryModel.getBlogData(renderInfoDTO.blog_name, renderInfoDTO.year);
+    
+        // get leveled blog info
+        blogInfoDTOArray = grassUtils.getLeveledBlogInfo(blogInfoArray);
+
+    } catch (err) {
+        console.error(err);
+    }
 
     // -- Render Blograss ------------------------------------------------------------------------------------------------------------
     var blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);

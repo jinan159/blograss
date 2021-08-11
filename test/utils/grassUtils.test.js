@@ -58,8 +58,7 @@ describe('grassUtils test', () => {
     test('getLevelStandard put [1 ... ] arrays and return grass level standard', () => {
         var postCountArray = [1, 1, 1, 1 ,1 ,1];
         var result = [{ level: 4, max: 1, min: 1 }]
-        var a = grassUtils.getLevelStandard(postCountArray)
-        console.log(a);
+        
         expect(grassUtils.getLevelStandard(postCountArray)).toEqual(result);
     });
     test('getLevelStandard put [1,2,3,4,5,6,7,8,9,10] arrays and return grass level standard', () => {

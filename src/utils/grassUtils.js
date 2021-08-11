@@ -122,6 +122,7 @@ module.exports = {
      * @returns BlogInfoDTO[]
      */
     getLeveledBlogInfo: function(blogInfoArray) {
+        
         if (blogInfoArray instanceof Array && blogInfoArray.length > 0) {
 
             // make post_count list for level standard
@@ -143,9 +144,9 @@ module.exports = {
                 blogInfoDTOArray.push(blogInfo);
             });
 
-            return blogInfoDTOArray;
-        } else {
-            throw new Error('Invalid Parameter');
+            
         }
+
+        return blogInfoDTOArray ?? [];
     }
 }
