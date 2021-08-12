@@ -4,7 +4,7 @@
             "brown": {
                 "text_color": "c96245",
                 "level_colors": {
-                    "0": "2e333a",
+                    "0": { "true": "2e333a", "false": "bfbfbf" },
                     "1": "49322c",
                     "2": "724337",
                     "3": "9f513c",
@@ -14,7 +14,7 @@
             "white": {
                 "text_color": "ffffff",
                 "level_colors": {
-                    "0": "2e333a",
+                    "0": { "true": "2e333a", "false": "bfbfbf" },
                     "1": "4d4d4d",
                     "2": "808080",
                     "3": "bfbfbf",
@@ -24,7 +24,7 @@
             "black": {
                 "text_color": "000000",
                 "level_colors": {
-                    "0": "2e333a",
+                    "0": { "true": "2e333a", "false": "bfbfbf" },
                     "1": "737373",
                     "2": "4d4d4d",
                     "3": "262626",
@@ -34,7 +34,7 @@
             "green": {
                 "text_color": "6bd064",
                 "level_colors": {
-                    "0": "2e333a",
+                    "0": { "true": "2e333a", "false": "bfbfbf" },
                     "1": "20432b",
                     "2": "2f6b38",
                     "3": "52a44e",
@@ -44,7 +44,7 @@
             "orange": {
                 "text_color": "ff9900",
                 "level_colors": {
-                    "0": "2e333a",
+                    "0": { "true": "2e333a", "false": "bfbfbf" },
                     "1": "573a0f",
                     "2": "8a590f",
                     "3": "c2780a",
@@ -64,11 +64,9 @@
     },
     "rect": {
         "theme": {
-            "dark": {
-                "color": "23272d"
-            },
-            "light": {
-                "color": "e6e6e6"
+            "background_color": { 
+                "true": "23272d",
+                "false": "e6e6e6" 
             }
         },
         "size": {

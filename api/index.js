@@ -1,10 +1,12 @@
-const { themeUtils, grassUtils, blogApiUtils, dateUtils } = require('../src/utils/util');
 const Joi = require('joi');
-const blograss = require('../src/blograss');
-const RenderInfoDTO = require('../src/dto/RenderInfoDTO');
-const BlogInfoDTO = require('../src/dto/BlogInfoDTO');
 const dotenv = require('dotenv');
+const override = require('../src/utils/override');
+override.initialize();
+const RenderInfoDTO = require('../src/dto/RenderInfoDTO');
 const TistoryModel = require('../src/model/TistoryModel');
+const blograss = require('../src/blograss');
+const { themeUtils, grassUtils } = require('../src/utils/util');
+
 dotenv.config();
 
 module.exports = async (req, res) => {
@@ -17,7 +19,7 @@ module.exports = async (req, res) => {
         blog_name: Joi.string().required(),
 		
 		size: Joi.string(),
-        background_color: Joi.string(),
+        darkMode: Joi.boolean(),
         text_color: Joi.string(),
         grass_color: Joi.string(),
 
@@ -43,7 +45,8 @@ module.exports = async (req, res) => {
         
         // grass theme parameters
         size = grassUtils.rectDefaultSize,       // grass rect size
-        background_color = themeUtils.rectDefaultTheme, // background theme
+        darkMode = true,
+        background_color = (darkMode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
         text_color = themeUtils.textDefaultTheme,       // title text color
         grass_color = themeUtils.grassDefaultTheme,     // grass color
 
@@ -57,7 +60,8 @@ module.exports = async (req, res) => {
                                         , background_color
                                         , text_color
                                         , grass_color
-                                        , Number.parseInt(year));
+                                        , Number.parseInt(year)
+                                        , Boolean.convertToBoolean(darkMode));
 
 
     // -- Data preprocessing ------------------------------------------------------------------------------------------------------------

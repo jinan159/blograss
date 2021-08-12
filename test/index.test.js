@@ -48,7 +48,7 @@ describe('index.js test', ()=>{
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            background_color: "dark",
+            darkMode: true,
         }
 
         await index(requestMock, responseMock);
@@ -114,9 +114,9 @@ describe('index.js test', ()=>{
             blog_type: "tistory",
             blog_name: "jwkim96",
             size: "large",
-            background_color: "dark",
             text_color: "green",
             grass_color: "green",
+            darkMode: true
         }
 
         await index(requestMock, responseMock);

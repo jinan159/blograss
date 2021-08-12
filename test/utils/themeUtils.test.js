@@ -16,46 +16,50 @@ describe('themeUtils test', () => {
     
     // == getGrassThemeColors ==================================
     test('getGrassThemeColors return white theme', () => {
-        expect(themeUtils.getGrassThemeColors('white')).toEqual(renderData.grass.theme.white.level_colors);
+        var level_colors = {
+            "0": "bfbfbf",
+            "1": "4d4d4d",
+            "2": "808080",
+            "3": "bfbfbf",
+            "4": "ffffff"
+        }
+        expect(themeUtils.getGrassThemeColors('white', false)).toEqual(level_colors);
     });
     test('getGrassThemeColors return default green theme', () => {
-        expect(themeUtils.getGrassThemeColors('jwkim')).toEqual(renderData.grass.theme.green.level_colors);
+        var level_colors = {
+            "0": "2e333a",
+            "1": "20432b",
+            "2": "2f6b38",
+            "3": "52a44e",
+            "4": "6bd064"
+        }
+        expect(themeUtils.getGrassThemeColors('jwkim', true)).toEqual(level_colors);
     });
 
 
     // == getGrassThemeColor ==================================
     test('getThemeLevelColor return white grass 2 theme', () => {
-        expect(themeUtils.getGrassThemeColor('white', 2)).toEqual(renderData.grass.theme.white.level_colors[2]);
+        expect(themeUtils.getGrassThemeColor('white', true, 2)).toEqual("808080");
     });
     test('getThemeLevelColor return default green grass 2 theme', () => {
-        expect(themeUtils.getGrassThemeColor('jwkim', 2)).toEqual(renderData.grass.theme.green.level_colors[2]);
+        expect(themeUtils.getGrassThemeColor('jwkim', true, 2)).toEqual("2f6b38");
     });
     test('getThemeLevelColor return grass 0 when value < 1', () => {
-        expect(themeUtils.getGrassThemeColor('green', -1)).toEqual(renderData.grass.theme.white.level_colors[0]);
+        expect(themeUtils.getGrassThemeColor('green', false, -1)).toEqual("bfbfbf");
     });
     test('getThemeLevelColor return grass 4 when value > 4', () => {
-        expect(themeUtils.getGrassThemeColor('green', 5)).toEqual(renderData.grass.theme.green.level_colors[4]);
+        expect(themeUtils.getGrassThemeColor('green', false, 5)).toEqual("6bd064");
     });
-
-
-    // == isRectThemeExist ==================================
-    test('isRectThemeExist dark theme is exist', () => {
-        expect(themeUtils.isRectThemeExist('dark')).toBeTruthy();
-    });
-    test('isRectThemeExist jwkim theme is not exist', () => {
-        expect(themeUtils.isRectThemeExist('jwkim')).toBeFalsy();
-    });
-
 
     // == getRectThemeColor ==================================
-    test('getRectThemeColor return light theme', () => {
-        expect(themeUtils.getRectThemeColor('light')).toEqual(renderData.rect.theme.light.color);
+    test('getRectThemeColor return darkMode=true color', () => {
+        expect(themeUtils.getRectThemeColor(true)).toEqual("23272d");
     });
-    test('getRectThemeColor return dark theme', () => {
-        expect(themeUtils.getRectThemeColor('dark')).toEqual(renderData.rect.theme["dark"].color);
+    test('getRectThemeColor return darkMode=false color', () => {
+        expect(themeUtils.getRectThemeColor(false)).toEqual("e6e6e6");
     });
-    test('getRectThemeColor return default dark theme', () => {
-        expect(themeUtils.getRectThemeColor('jwkim')).toEqual(renderData.rect.theme.dark.color);
+    test('getRectThemeColor return default(darkMode=false) color(when darkMode value is not valid) ', () => {
+        expect(themeUtils.getRectThemeColor('hello world')).toEqual("e6e6e6");
     });
 
 
