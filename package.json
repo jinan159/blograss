@@ -31,6 +31,8 @@
 		"jest": "^27.0.6"
 	},
 	"jest": {
-		"setupFiles": ["./test/__global__.js"]
+		"setupFiles": [
+			"./test/__global__.js"
+		]
 	}
 }
