@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     const schema = Joi.object({
         blog_type : Joi.string().required(),
         blog_name: Joi.string().required(),
-		
+
 		size: Joi.string(),
         darkMode: Joi.boolean(),
         text_color: Joi.string(),

@@ -24,7 +24,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
 
     // -- title script ------------------------------------------------------------------------------------------------------------
     var titlePosition = grassUtils.getTitleStartPosition();
-    var titleText = `${renderInfoDTO.blog_name}'s ${renderInfoDTO.blog_type} blograss`;
+    var titleText = `${renderInfoDTO.blog_name}'s ${renderInfoDTO.blog_type} blograss - ${renderInfoDTO.year}`;
     
     blograssScript += component.text.render(titlePosition.x, titlePosition.y, titleText, 18, renderInfoDTO.text_color);;
 
@@ -93,6 +93,9 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     var daysContainer = component.container.render(17, 96, daysScript);
     blograssScript += daysContainer;
     blograssScript += monthScript;
+
+    // TODO develop less more
+    // -- less more script ------------------------------------------------------------------------------------------------------------
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
 }
