@@ -94,7 +94,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 - **white**
     <img src="./svg/grass_color_white.svg" alt="grass_color white" >
 
-# Examples
+# 샘플
 - **green grass theme**
     ```http
     https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
