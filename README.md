@@ -49,7 +49,7 @@ query string 입니다.
 ### **blog_type(required)**
 `tistory`
 
-:exclamation: 현재는 `tistory` 타입만 제공됩니다.(타 블로그도 업로드 예정)
+:information_source: 현재는 `tistory` 타입만 제공됩니다.(타 블로그도 업로드 예정)
 
 <br>
 
