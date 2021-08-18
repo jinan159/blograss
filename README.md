@@ -34,12 +34,12 @@
 
 - Markdown
 ```
-![blograss](https://blograss.vercel.app/api?{parameters})
+![blograss](https://blograss-git-dev-jinan159.vercel.app/api?{parameters})
 ```
 
 - HTML
 ```
-<img src="https://blograss.vercel.app/api?{parameters}" />
+<img src="https://blograss-git-dev-jinan159.vercel.app/api?{parameters}" />
 ```
 
 # 옵션
@@ -97,7 +97,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 # 샘플
 - **green grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=green&darkMode=true
     ```
     <img src="./svg/examples/example_green_dark.svg" alt="example" >
     
@@ -105,7 +105,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     <br>
     
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=black&darkMode=false
     ```
     <img src="./svg/examples/example_green_light.svg" alt="example" >
     
@@ -114,7 +114,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 
 - **orange grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=orange&text_color=orange&darkMode=true
     ```
     <img src="./svg/examples/example_orange.svg" alt="example" >
     
@@ -123,7 +123,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 
 - **brown grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=brown&text_color=brown&darkMode=true
     ```
     <img src="./svg/examples/example_brown.svg" alt="example" >
     
@@ -131,16 +131,16 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     <br>
 - **black grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=black&darkMode=false
     ```
     <img src="./svg/examples/example_black.svg" alt="example" >
 
-    - optinos `grass_color=black`, `text_color=white`, `darkMode=false`
+    - optinos `grass_color=black`, `text_color=black`, `darkMode=false`
     <br>
 
 - **white grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=white&text_color=white
+    https://blograss-git-dec-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=white&text_color=white&darkMode=true
     ```
     <img src="./svg/examples/example_white.svg" alt="example" >
     
