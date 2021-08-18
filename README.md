@@ -16,6 +16,7 @@
 <p align='center'>읽어주셔서 감사합니다</p>
 
 ----
+:information_source: **현재 개발중인 버전입니다!**
 
 # 목차
 1. <a href="#사용법">사용법</a>
