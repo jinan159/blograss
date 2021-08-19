@@ -19,20 +19,20 @@ module.exports = {
     /**
     * get theme grass level colors
     * @param {String} grassTheme
-    * @param {Boolean} isDarkMode
+    * @param {Boolean} dark_mode
     * @returns 
     */
-     getGrassThemeColors: function(grassTheme, isDarkMode = true) {
+     getGrassThemeColors: function(grassTheme, dark_mode = true) {
         
         if (!this.isGrassThemeExist(grassTheme)) {
             grassTheme = this.grassDefaultTheme;   
         }
 
-        isDarkMode = Boolean.convertToBoolean(isDarkMode); // validate and convert 'isDarkMode' value to Boolean
+        dark_mode = Boolean.convertToBoolean(dark_mode); // validate and convert 'dark_mode' value to Boolean
 
         // clone level_colors data to protect original data
         var level_colors = commonUtils.cloneObject(renderData.grass.theme[grassTheme].level_colors);
-        level_colors['0'] = level_colors['0'][isDarkMode];
+        level_colors['0'] = level_colors['0'][dark_mode];
 
         return level_colors;
     },
@@ -40,11 +40,11 @@ module.exports = {
     /**
      * get grass theme level color
      * @param {String} theme
-     * @param {Boolean} isDarkMode 
+     * @param {Boolean} dark_mode 
      * @param {Number} level
      * @returns 
      */
-    getGrassThemeColor: function (grassTheme, isDarkMode, level=0) {
+    getGrassThemeColor: function (grassTheme, dark_mode, level=0) {
         if (level < 0) level = 0;
         else if (level > 4) level = 4;
 
@@ -56,8 +56,8 @@ module.exports = {
         var level_color = null;
 
         if (level == 0) {
-            isDarkMode = Boolean.convertToBoolean(isDarkMode); // validate and convert 'darkMode' value to Boolean
-            level_color = level_colors[level][isDarkMode];
+            dark_mode = Boolean.convertToBoolean(dark_mode); // validate and convert 'dark_mode' value to Boolean
+            level_color = level_colors[level][dark_mode];
         } else {
             level_color = level_colors[level]
         }
@@ -67,14 +67,14 @@ module.exports = {
 
     /**
      * get rect theme
-     * @param {Boolean} isDarkMode 
+     * @param {Boolean} dark_mode 
      * @returns 
      */
-    getRectThemeColor: function (isDarkMode) {
+    getRectThemeColor: function (dark_mode) {
         
-        isDarkMode = Boolean.convertToBoolean(isDarkMode);// validate and convert 'darkMode' value to Boolean
+        dark_mode = Boolean.convertToBoolean(dark_mode);// validate and convert 'dark_mode' value to Boolean
 
-        return renderData.rect.theme.background_color[isDarkMode];
+        return renderData.rect.theme.background_color[dark_mode];
     },
 
     /**

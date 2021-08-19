@@ -7,7 +7,7 @@ describe('grass.js test', ()=>{
     // == render ==================================
     test('grass render test',()=>{
         const theme = "green";
-        const isDarkMode = true;
+        const dark_mode = true;
         const level = 3;
         const x = 10;
         const y = 12;
@@ -17,8 +17,8 @@ describe('grass.js test', ()=>{
             width,
             height
         } = grassUtils.getGrassSize();
-        const fillColor = themeUtils.getGrassThemeColor('green', isDarkMode, level);
+        const fillColor = themeUtils.getGrassThemeColor('green', dark_mode, level);
 
-        expect(grass.render(theme, isDarkMode, level, x, y)).toEqual(`<rect width="${width}" height="${height}" x="${x}" y="${y}" rx="2" ry="2" style="fill: #${fillColor};"/>`);
+        expect(grass.render(theme, dark_mode, level, x, y)).toEqual(`<rect width="${width}" height="${height}" x="${x}" y="${y}" rx="2" ry="2" style="fill: #${fillColor};"/>`);
     })
 });

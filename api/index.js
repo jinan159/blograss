@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
         blog_name: Joi.string().required(),
 
 		size: Joi.string(),
-        darkMode: Joi.boolean(),
+        dark_mode: Joi.boolean(),
         text_color: Joi.string(),
         grass_color: Joi.string(),
 
@@ -45,8 +45,8 @@ module.exports = async (req, res) => {
         
         // grass theme parameters
         size = grassUtils.rectDefaultSize,       // grass rect size
-        darkMode = true,
-        background_color = (darkMode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
+        dark_mode = true,
+        background_color = (dark_mode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
         text_color = themeUtils.textDefaultTheme,       // title text color
         grass_color = themeUtils.grassDefaultTheme,     // grass color
 
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
                                         , text_color
                                         , grass_color
                                         , Number.parseInt(year)
-                                        , Boolean.convertToBoolean(darkMode));
+                                        , Boolean.convertToBoolean(dark_mode));
 
 
     // -- Data preprocessing ------------------------------------------------------------------------------------------------------------

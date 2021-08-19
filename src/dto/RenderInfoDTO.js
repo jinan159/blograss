@@ -11,9 +11,9 @@ class RenderingDTO {
      * @param {String} text_color 
      * @param {String} grass_color 
      * @param {Number} year
-     * @param {Boolean} isDarkMode
+     * @param {Boolean} dark_mode
      */
-    constructor(blog_type, blog_name, size, background_color, text_color, grass_color, year, isDarkMode) {
+    constructor(blog_type, blog_name, size, background_color, text_color, grass_color, year, dark_mode) {
         this.blog_type = blog_type;
         this.blog_name = blog_name;
         this.background_color = background_color;
@@ -21,7 +21,7 @@ class RenderingDTO {
         this.grass_color = grass_color;
         this.size = size;
         this.year = year;
-        this.isDarkMode = isDarkMode;
+        this.dark_mode = dark_mode;
     }
 }
 

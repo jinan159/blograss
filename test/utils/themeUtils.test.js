@@ -52,13 +52,13 @@ describe('themeUtils test', () => {
     });
 
     // == getRectThemeColor ==================================
-    test('getRectThemeColor return darkMode=true color', () => {
+    test('getRectThemeColor return dark_mode=true color', () => {
         expect(themeUtils.getRectThemeColor(true)).toEqual("23272d");
     });
-    test('getRectThemeColor return darkMode=false color', () => {
+    test('getRectThemeColor return dark_mode=false color', () => {
         expect(themeUtils.getRectThemeColor(false)).toEqual("e6e6e6");
     });
-    test('getRectThemeColor return default(darkMode=false) color(when darkMode value is not valid) ', () => {
+    test('getRectThemeColor return default(dark_mode=false) color(when dark_mode value is not valid) ', () => {
         expect(themeUtils.getRectThemeColor('hello world')).toEqual("e6e6e6");
     });
 

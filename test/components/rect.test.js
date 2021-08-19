@@ -7,7 +7,7 @@ describe('rect.js test', ()=>{
     const rect = require('../../src/components/rect');
     
     // == render ==================================
-    test('rect small size, darkMode=true render test',()=>{
+    test('rect small size, dark_mode=true render test',()=>{
         // test data
         const {
             width,
@@ -17,16 +17,16 @@ describe('rect.js test', ()=>{
 
         expect(rect.render('small', true)).toEqual(`<rect width="${width}" height="${height}" rx="5" ry="5" style="fill: #${fillColor};"/>`);
     });
-    test('rect large, darkMode=false render test',()=>{
+    test('rect large, dark_mode=false render test',()=>{
         // test data
         var size = 'large';
-        var isDarkMode = false;
+        var dark_mode = false;
         const {
             width,
             height
         } = grassUtils.getRectSize(size);
-        const fillColor = themeUtils.getRectThemeColor(isDarkMode);
+        const fillColor = themeUtils.getRectThemeColor(dark_mode);
 
-        expect(rect.render(size, isDarkMode)).toEqual(`<rect width="${width}" height="${height}" rx="5" ry="5" style="fill: #${fillColor};"/>`);
+        expect(rect.render(size, dark_mode)).toEqual(`<rect width="${width}" height="${height}" rx="5" ry="5" style="fill: #${fillColor};"/>`);
     })
 });

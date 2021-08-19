@@ -19,7 +19,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     var blograssScript = "";
 
     // -- rect script ------------------------------------------------------------------------------------------------------------
-    blograssScript += component.rect.render(renderInfoDTO.size, renderInfoDTO.isDarkMode);
+    blograssScript += component.rect.render(renderInfoDTO.size, renderInfoDTO.dark_mode);
 
 
     // -- title script ------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
         var level = (blogInfo == undefined) ? 0 : blogInfo.level;
 
         // add grass of week
-        grassComponent += component.grass.render(renderInfoDTO.grass_color, renderInfoDTO.isDarkMode, level, 0, height);
+        grassComponent += component.grass.render(renderInfoDTO.grass_color, renderInfoDTO.dark_mode, level, 0, height);
 
         // if 'saturday' of 'first of month' or 'end of data' then, finish week
         if (grassDate.getDay() == 6 || i == yearDate - 1) {

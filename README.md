@@ -24,7 +24,7 @@
     <br>2-2. <a href="#blog_namerequired">blog_name(required)</a>
     <br>2-3. <a href="#year">year</a>
     <br>2-4. <a href="#size">size</a>
-    <br>2-5. <a href="#darkmode">darkMode</a>
+    <br>2-5. <a href="#dark_mode">dark_mode</a>
     <br>2-6. <a href="#text_color">text_color</a>
     <br>2-7. <a href="#grass_color">grass_color</a>
 3. <a href="#샘플">샘플</a>
@@ -48,7 +48,7 @@ query string 입니다.
 ### **blog_type(required)**
 `tistory`
 
-:exclamation: 현재는 `tistory` 타입만 제공됩니다.(타 블로그도 업로드 예정)
+:exclamation: 현재는 `tistory` 타입만 제공됩니다.(타 블로그도 업데이트 예정)
 
 <br>
 
@@ -70,12 +70,12 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 `small` : 242px, 180px<br>
 <br>
 
-### **darkMode**
+### **dark_mode**
 
 - `true` (default)
-    background color : <img src="./svg/darkMode_true.svg" alt="darkMode true" >
+    background color : <img src="./svg/darkMode_true.svg" alt="dark_mode true" >
 - `false`
-    background color : <img src="./svg/darkMode_false.svg" alt="darkMode false" >
+    background color : <img src="./svg/darkMode_false.svg" alt="dark_mode false" >
     <br>
 
 ### **text_color**
@@ -97,37 +97,37 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 # 샘플
 - **green grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&dark_mode=false
     ```
     <img src="./svg/examples/example_green_dark.svg" alt="example" >
     
-    - optinos `grass_color=green`, `text_color=green`, `darkMode=true`
+    - optinos `grass_color=green`, `text_color=green`, `dark_mode=true`
     <br>
     
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&dark_mode=false
     ```
     <img src="./svg/examples/example_green_light.svg" alt="example" >
     
-    - optinos `grass_color=green`, `text_color=black`, `darkMode=false`
+    - optinos `grass_color=green`, `text_color=black`, `dark_mode=false`
     <br>
 
 - **orange grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&dark_mode=false
     ```
     <img src="./svg/examples/example_orange.svg" alt="example" >
     
-    - optinos `grass_color=orange`, `text_color=orange`, `darkMode=true`
+    - optinos `grass_color=orange`, `text_color=orange`, `dark_mode=true`
     <br>
 
 - **brown grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&dark_mode=false
     ```
     <img src="./svg/examples/example_brown.svg" alt="example" >
     
-    - optinos `grass_color=brown`, `text_color=brown`, `darkMode=true`
+    - optinos `grass_color=brown`, `text_color=brown`, `dark_mode=true`
     <br>
 - **black grass theme**
     ```http
@@ -144,7 +144,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     ```
     <img src="./svg/examples/example_white.svg" alt="example" >
     
-    - optinos `grass_color=white`, `text_color=white`, `darkMode=true`
+    - optinos `grass_color=white`, `text_color=white`, `dark_mode=true`
     <br>
 
 
