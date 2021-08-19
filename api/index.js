@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const dotenv = require('dotenv');
+dotenv.config();
 const override = require('../src/utils/override');
 override.initialize();
 const RenderInfoDTO = require('../src/dto/RenderInfoDTO');
@@ -7,8 +8,7 @@ const TistoryModel = require('../src/model/TistoryModel');
 const blograss = require('../src/blograss');
 const { themeUtils, grassUtils } = require('../src/utils/util');
 
-dotenv.config();
-
+// TODO add logging(Counting users, Counting API Calls, Error ... )
 module.exports = async (req, res) => {
 
     // -- Request Query Validation ------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,9 @@ const axios = require('axios');
 const blogApiUtils = require('../utils/blogApiUtils');
 const BlogInfoDTO = require('../dto/BlogInfoDTO');
 
+// TODO test case
+// TODO improve latency [vercel location:us ~ tistory api location:kr]
+// TODO improve unefficient api call logig
 class TistoryModel {
 
     constructor() {
