@@ -131,11 +131,11 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     <br>
 - **black grass theme**
     ```http
-    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=white&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=black&dark_mode=false
     ```
     <img src="./svg/examples/example_black.svg" alt="example" >
 
-    - optinos `grass_color=black`, `text_color=white`, `darkMode=false`
+    - optinos `grass_color=black`, `text_color=black`, `dark_mode=false`
     <br>
 
 - **white grass theme**
