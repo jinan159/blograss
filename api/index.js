@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         blog_type : Joi.string().required(),
         blog_name: Joi.string().required(),
 
-		size: Joi.string(),
+		// size: Joi.string(),
         dark_mode: Joi.boolean(),
         text_color: Joi.string(),
         grass_color: Joi.string(),

@@ -89,21 +89,21 @@ describe('index.js test', ()=>{
         expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
     });
 
-    test('index.js api call with \'size\' parameter', async ()=>{
+    // test('index.js api call with \'size\' parameter', async ()=>{
 
-        // set request
-        requestMock.method = 'GET';
-        requestMock.query = {
-            blog_type: "tistory",
-            blog_name: "jwkim96",
-            size: "large",
-        }
+    //     // set request
+    //     requestMock.method = 'GET';
+    //     requestMock.query = {
+    //         blog_type: "tistory",
+    //         blog_name: "jwkim96",
+    //         size: "large",
+    //     }
 
-        await index(requestMock, responseMock);
+    //     await index(requestMock, responseMock);
 
-        expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
-    });
+    //     expect(responseMock.RESPONSE_DATA).toBeDefined();
+    //     expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+    // });
 
 
     test('index.js api call with all parameter', async ()=>{
@@ -113,7 +113,7 @@ describe('index.js test', ()=>{
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            size: "large",
+            // size: "large",
             text_color: "green",
             grass_color: "green",
             dark_mode: true

@@ -24,10 +24,12 @@
     <br>2-1. <a href="#blog_typerequired">blog_type(required)</a>
     <br>2-2. <a href="#blog_namerequired">blog_name(required)</a>
     <br>2-3. <a href="#year">year</a>
-    <br>2-4. <a href="#size">size</a>
-    <br>2-5. <a href="#dark_mode">dark_mode</a>
-    <br>2-6. <a href="#text_color">text_color</a>
-    <br>2-7. <a href="#grass_color">grass_color</a>
+
+    <!-- <br>2-4. <a href="#size">size</a> -->
+
+    <br>2-4. <a href="#dark_mode">dark_mode</a>
+    <br>2-5. <a href="#text_color">text_color</a>
+    <br>2-6. <a href="#grass_color">grass_color</a>
 3. <a href="#샘플">샘플</a>
 
 
@@ -65,11 +67,11 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 
 <br>
 
-### **size**
+<!-- ### **size**
 `large` : 750px, 180px (default)<br>
 `middle` : 412px, 180px<br>
 `small` : 242px, 180px<br>
-<br>
+<br> -->
 
 ### **dark_mode**
 
