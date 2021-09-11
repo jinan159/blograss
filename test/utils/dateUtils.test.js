@@ -30,12 +30,27 @@ describe('dateUtils test', () => {
 
     // == getLastDayOfMonth ==================================
     test('getLastDayOfMonth get lastday of 3', () => {
-        expect(dateUtils.getLastDayOfMonth(2021, 1)).toEqual(31);
+        expect(dateUtils.getLastDayOfMonth(2021, 6)).toBe(30);
+    });
+    test('getLastDayOfMonth get lastday of leap year 2', () => {
+        expect(dateUtils.getLastDayOfMonth(2020, 2)).toBe(29);
     });
     test('getLastDayOfMonth lastday of 14', () => {
-        expect(() => { dateUtils.getLastDayOfMonth(2021, 14) }).toThrow(Error);
+        expect(dateUtils.getLastDayOfMonth(2021, 14)).toBe(31);
     });
     test('getLastDayOfMonth lastday of -1', () => {
-        expect(() => { dateUtils.getLastDayOfMonth(2021, -1) }).toThrow(Error);
+        expect(dateUtils.getLastDayOfMonth(2021, -1)).toBe(31);
+    });
+
+
+    // == isLeapYear ==================================
+    test('isLeapYear return true for 2020(number)', () => {
+        expect(dateUtils.isLeapYear(2020)).toBeTruthy();
+    });
+    test('isLeapYear return true for 2021(number)', () => {
+        expect(dateUtils.isLeapYear(2021)).toBeFalsy();
+    });
+    test('isLeapYear return true for 2020(string)', () => {
+        expect(dateUtils.isLeapYear('2020')).toBeTruthy();
     });
 });

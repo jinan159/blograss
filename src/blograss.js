@@ -19,38 +19,65 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     var blograssScript = "";
 
     // -- rect script ------------------------------------------------------------------------------------------------------------
-    blograssScript += component.rect.render(renderInfoDTO.size, renderInfoDTO.dark_mode);
+    blograssScript += getRectComponentScript(renderInfoDTO);
 
 
     // -- title script ------------------------------------------------------------------------------------------------------------
+    blograssScript += getTitleComponentScript(renderInfoDTO);
+
+    // -- grassContainer and monthScript script ------------------------------------------------------------------------------------------------------------
+    const {
+        grassContainerScript,
+        monthScript
+    } = getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray);
+
+    blograssScript += grassContainerScript;
+    blograssScript += monthScript;
+    
+    // -- daysContainer script ------------------------------------------------------------------------------------------------------------
+    blograssScript += getDaysContainerComponentScript(renderInfoDTO);
+
+    // TODO develop less more
+    // -- less more script ------------------------------------------------------------------------------------------------------------
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
+}
+
+/**
+ * return rect component script
+ * @param {RenderInfoDTO} renderInfoDTO 
+ */
+ function getRectComponentScript(renderInfoDTO) {
+    return component.rect.render(renderInfoDTO.size, renderInfoDTO.dark_mode);;
+}
+
+/**
+ * return title component script
+ * @param {RenderInfoDTO} renderInfoDTO 
+ */
+function getTitleComponentScript(renderInfoDTO) {
     var titlePosition = grassUtils.getTitleStartPosition();
     var titleText = `${renderInfoDTO.blog_name}'s ${renderInfoDTO.blog_type} blograss - ${renderInfoDTO.year}`;
-    
-    blograssScript += component.text.render(titlePosition.x, titlePosition.y, titleText, 18, renderInfoDTO.text_color);;
+    return component.text.render(titlePosition.x, titlePosition.y, titleText, 18, renderInfoDTO.text_color);
+}
 
-
-    // -- grassContainer script ------------------------------------------------------------------------------------------------------------
-    var now = new Date();
-    var startDate = new Date(`${renderInfoDTO.year}-01-01`);
-    var endDate = new Date(`${renderInfoDTO.year}-12-31`);
-    var yearDate = 365;
-    
-    // if year is this year, set endDate to today
-    if ( renderInfoDTO.year == now.getFullYear() ) {
-        endDate = now;
-        
-        var diff = Math.abs(endDate.getTime() - startDate.getTime());
-        diff = Math.ceil(diff / (1000 * 3600 * 24));
-        yearDate = diff;
-    }
-    
+/**
+ * return grass container component and month component script
+ * @param {RenderInfoDTO} renderInfoDTO 
+ * @param {BlogInfoDTO[]} blogInfoDTOArray 
+ * @returns {grassContainerScript, monthScript}
+ */
+function getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray) {
+    var yearDate = (dateUtils.isLeapYear(renderInfoDTO.year)) ? 365 : 366;
+    var startDate = new Date(`${renderInfoDTO.year}-01-01 00:00:00`);
+    var endDate = new Date(`${renderInfoDTO.year}-12-31 23:59:59`);
     // filter date between startDate and endDate
-    var blogInfoToRender = blogInfoDTOArray.filter(info => new Date(info.date) > startDate && new Date(info.date) < endDate );
+    var blogInfoToRender = blogInfoDTOArray.filter(info => new Date(info.date) >= startDate && new Date(info.date) <= endDate );
 
     // make grassScript
     var {x, y} = grassUtils.getGrassStartPosition();
     var grassComponent = "";
-    var grassContainer = "";
+    var grassContainerscript = "";
     var monthScript = "";
     var prevMonth = -1;
 
@@ -66,7 +93,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
 
         // if 'saturday' of 'first of month' or 'end of data' then, finish week
         if (grassDate.getDay() == 6 || i == yearDate - 1) {
-            grassContainer += component.container.render(x, y, grassComponent);
+            grassContainerscript += component.container.render(x, y, grassComponent);
             grassComponent = "";
 
             var width = grassUtils.getGrassSize().width;
@@ -83,21 +110,20 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
         }
     }
 
-    blograssScript += grassContainer;
+    return {grassContainerscript, monthScript};
+}
 
-    // TODO font size move to render-data.json
-    // -- daysContainer script ------------------------------------------------------------------------------------------------------------
+// TODO font size move to render-data.json
+/**
+ * return days component script
+ * @param {RenderInfoDTO} renderInfoDTO 
+ */
+ function getDaysContainerComponentScript(renderInfoDTO) {
     var daysScript = component.text.render(0, 0, "Mon", 12, renderInfoDTO.text_color)
                     + component.text.render(0, 26, "Wed", 12, renderInfoDTO.text_color)
                     + component.text.render(0, 52, "Fri", 12, renderInfoDTO.text_color);
-    var daysContainer = component.container.render(17, 96, daysScript);
-    blograssScript += daysContainer;
-    blograssScript += monthScript;
 
-    // TODO develop less more
-    // -- less more script ------------------------------------------------------------------------------------------------------------
-
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
+    return component.container.render(17, 96, daysScript);
 }
 
 module.exports = { render };
