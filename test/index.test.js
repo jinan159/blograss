@@ -23,7 +23,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("text/html");
+        expect(responseMock.statusCode).toBe(400);
     });
 
     test('index.js api call with required parameter only', async ()=>{
@@ -38,7 +38,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'background_color\' parameter', async ()=>{
@@ -54,7 +54,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'text_color\' parameter', async ()=>{
@@ -70,7 +70,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'grass_color\' parameter', async ()=>{
@@ -86,7 +86,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     // test('index.js api call with \'size\' parameter', async ()=>{
@@ -102,7 +102,7 @@ describe('index.js test', ()=>{
     //     await index(requestMock, responseMock);
 
     //     expect(responseMock.RESPONSE_DATA).toBeDefined();
-    //     expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+    //     expect(responseMock.statusCode).toBe(200);
     // });
 
 
@@ -122,7 +122,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 	
 	

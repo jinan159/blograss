@@ -10,6 +10,7 @@ const { themeUtils, grassUtils } = require('../src/utils/util');
 
 // TODO add logging(Counting users, Counting API Calls, Error ... )
 module.exports = async (req, res) => {
+    res.setHeader("Content-Type", "text/html");
 
     // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
 
@@ -31,8 +32,8 @@ module.exports = async (req, res) => {
 
     // validation error
     if (requestValidation.error) {
-		res.setHeader("Content-Type", "text/html");
-		res.send(requestValidation.error.details[0].message);
+        res.statusCode = 400;
+        res.send(requestValidation.error.details[0].message);
 		return;
 	}
 	
@@ -83,6 +84,6 @@ module.exports = async (req, res) => {
     // -- Render Blograss ------------------------------------------------------------------------------------------------------------
     var blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);
 
-    res.setHeader("Content-Type", "image/svg+xml");
+    res.statusCode = 200;
     res.send(blograssSvg);
 };
