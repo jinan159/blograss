@@ -4,7 +4,7 @@ const BlogInfoDTO = require('../dto/BlogInfoDTO');
 
 // TODO test case
 // TODO improve latency [vercel location:us ~ tistory api location:kr]
-// TODO improve unefficient api call logig
+// TODO improve unefficient api call logging
 class TistoryModel {
 
     constructor() {
