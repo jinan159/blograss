@@ -26,13 +26,9 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     blograssScript += getTitleComponentScript(renderInfoDTO);
 
     // -- grassContainer and monthScript script ------------------------------------------------------------------------------------------------------------
-    const {
-        grassContainerScript,
-        monthScript
-    } = getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray);
+    const grassContainerAndMonthscript = getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray);
 
-    blograssScript += grassContainerScript;
-    blograssScript += monthScript;
+    blograssScript += grassContainerAndMonthscript;
     
     // -- daysContainer script ------------------------------------------------------------------------------------------------------------
     blograssScript += getDaysContainerComponentScript(renderInfoDTO);
@@ -68,9 +64,19 @@ function getTitleComponentScript(renderInfoDTO) {
  * @returns {grassContainerScript, monthScript}
  */
 function getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray) {
-    var yearDate = (dateUtils.isLeapYear(renderInfoDTO.year)) ? 365 : 366;
     var startDate = new Date(`${renderInfoDTO.year}-01-01 00:00:00`);
     var endDate = new Date(`${renderInfoDTO.year}-12-31 23:59:59`);
+    var yearDate = (dateUtils.isLeapYear(renderInfoDTO.year)) ? 365 : 366;
+
+    // if year is this year, set endDate to today
+    if ( renderInfoDTO.year == new Date().getFullYear() ) {
+        endDate = new Date();
+        
+        var diff = Math.abs(endDate.getTime() - startDate.getTime());
+        diff = Math.ceil(diff / (1000 * 3600 * 24));
+        yearDate = diff;
+    }
+    
     // filter date between startDate and endDate
     var blogInfoToRender = blogInfoDTOArray.filter(info => new Date(info.date) >= startDate && new Date(info.date) <= endDate );
 
@@ -110,7 +116,7 @@ function getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArra
         }
     }
 
-    return {grassContainerscript, monthScript};
+    return grassContainerscript + monthScript;
 }
 
 // TODO font size move to render-data.json
