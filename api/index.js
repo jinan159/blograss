@@ -10,6 +10,7 @@ const { themeUtils, grassUtils } = require('../src/utils/util');
 
 // TODO add logging(Counting users, Counting API Calls, Error ... )
 module.exports = async (req, res) => {
+    res.setHeader('Cache-Control', 's-maxage=86400');
     res.setHeader("Content-Type", "text/html");
 
     // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
