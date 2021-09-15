@@ -26,9 +26,7 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     blograssScript += getTitleComponentScript(renderInfoDTO);
 
     // -- grassContainer and monthScript script ------------------------------------------------------------------------------------------------------------
-    const grassContainerAndMonthscript = getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray);
-
-    blograssScript += grassContainerAndMonthscript;
+    blograssScript += getGrassContainerAndMonthComponentScript(renderInfoDTO, blogInfoDTOArray);
     
     // -- daysContainer script ------------------------------------------------------------------------------------------------------------
     blograssScript += getDaysContainerComponentScript(renderInfoDTO);
