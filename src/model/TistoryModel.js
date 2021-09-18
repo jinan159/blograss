@@ -148,6 +148,8 @@ class TistoryModel {
                 blogInfoDTOArray.push(new BlogInfoDTO(key, postCountArray[key], 0));
             }
         }
+
+        return blogInfoDTOArray;
     }
 }
 
