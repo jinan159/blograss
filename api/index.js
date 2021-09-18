@@ -10,81 +10,85 @@ const { themeUtils, grassUtils } = require('../src/utils/util');
 
 // TODO add logging(Counting users, Counting API Calls, Error ... )
 module.exports = async (req, res) => {
-    res.setHeader('Cache-Control', 's-maxage=86400');
-    res.setHeader("Content-Type", "text/html");
-
-    // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
-
-	// joi api validation schema
-    const schema = Joi.object({
-        blog_type : Joi.string().required(),
-        blog_name: Joi.string().required(),
-
-		// size: Joi.string(),
-        dark_mode: Joi.boolean(),
-        text_color: Joi.string(),
-        grass_color: Joi.string(),
-
-        year: Joi.number().min(1970).max(new Date().getFullYear())
-    });
-	
-	// joi validation
-    const requestValidation = schema.validate(req.query);
-
-    // validation error
-    if (requestValidation.error) {
-        res.statusCode = 400;
-        res.send(requestValidation.error.details[0].message);
-		return;
-	}
-	
-    // -- Get Request parameters ------------------------------------------------------------------------------------------------------------
-    
-    const {
-        // blog info parameters
-        blog_type = "",
-        blog_name = "",
-        
-        // grass theme parameters
-        size = grassUtils.rectDefaultSize,       // grass rect size
-        dark_mode = true,
-        background_color = (dark_mode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
-        text_color = themeUtils.textDefaultTheme,       // title text color
-        grass_color = themeUtils.grassDefaultTheme,     // grass color
-
-        year = new Date().getFullYear(),
-    } = req.query;
-
-    // -- Set Current Theme ------------------------------------------------------------------------------------------------------------
-    var renderInfoDTO = new RenderInfoDTO(blog_type
-                                        , blog_name
-                                        , size
-                                        , background_color
-                                        , text_color
-                                        , grass_color
-                                        , Number.parseInt(year)
-                                        , Boolean.convertToBoolean(dark_mode));
-
-
-    // -- Data preprocessing ------------------------------------------------------------------------------------------------------------
-
-    var blogInfoArray = []
-    var blogInfoDTOArray = []
     try {
+        res.setHeader('Cache-Control', 's-maxage=86400');
+        res.setHeader("Content-Type", "text/html");
 
-        var tistoryModel = new TistoryModel();        
-        blogInfoArray = await tistoryModel.getBlogData(renderInfoDTO.blog_name, renderInfoDTO.year);
-    
-        // get leveled blog info
-        blogInfoDTOArray = grassUtils.getLeveledBlogInfo(blogInfoArray);
+        // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
 
-    } catch (err) {
-        console.error(err);
+        // joi api validation schema
+        const schema = Joi.object({
+            blog_type : Joi.string().required(),
+            blog_name: Joi.string().required(),
+
+            // size: Joi.string(),
+            dark_mode: Joi.boolean(),
+            text_color: Joi.string(),
+            grass_color: Joi.string(),
+
+            year: Joi.number().min(1970).max(new Date().getFullYear())
+        });
+        
+        // joi validation
+        const requestValidation = schema.validate(req.query);
+
+        // validation error
+        if (requestValidation.error) {
+            res.statusCode = 400;
+            res.send(requestValidation.error.details[0].message);
+            return;
+        }
+        
+        // -- Get Request parameters ------------------------------------------------------------------------------------------------------------
+        
+        const {
+            // blog info parameters
+            blog_type = "",
+            blog_name = "",
+            
+            // grass theme parameters
+            size = grassUtils.rectDefaultSize,       // grass rect size
+            dark_mode = true,
+            background_color = (dark_mode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
+            text_color = themeUtils.textDefaultTheme,       // title text color
+            grass_color = themeUtils.grassDefaultTheme,     // grass color
+
+            year = new Date().getFullYear(),
+        } = req.query;
+
+        // -- Set Current Theme ------------------------------------------------------------------------------------------------------------
+        var renderInfoDTO = new RenderInfoDTO(blog_type
+                                            , blog_name
+                                            , size
+                                            , background_color
+                                            , text_color
+                                            , grass_color
+                                            , Number.parseInt(year)
+                                            , Boolean.convertToBoolean(dark_mode));
+
+
+        // -- Data preprocessing ------------------------------------------------------------------------------------------------------------
+
+        var blogInfoArray = []
+        var blogInfoDTOArray = []
+        try {
+
+            var tistoryModel = new TistoryModel();        
+            blogInfoArray = await tistoryModel.getBlogData(renderInfoDTO.blog_name, renderInfoDTO.year);
+        
+            // get leveled blog info
+            blogInfoDTOArray = grassUtils.getLeveledBlogInfo(blogInfoArray);
+
+        } catch (err) {
+            console.error(err);
+        }
+
+        // -- Render Blograss ------------------------------------------------------------------------------------------------------------
+        var blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);
+
+        res.statusCode = 200;
+        res.send(blograssSvg);
+    } catch (error) {
+        console.log(error);
     }
-
-    // -- Render Blograss ------------------------------------------------------------------------------------------------------------
-    var blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);
-
-    res.statusCode = 200;
-    res.send(blograssSvg);
 };
