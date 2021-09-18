@@ -53,4 +53,16 @@ describe('dateUtils test', () => {
     test('isLeapYear return true for 2020(string)', () => {
         expect(dateUtils.isLeapYear('2020')).toBeTruthy();
     });
+
+
+    // == isYearValid ==================================
+    test('isYearValid return true for 2020(number)', () => {
+        expect(dateUtils.isYearValid(2020)).toBeTruthy();
+    });
+    test('isYearValid return true for 2020(string)', () => {
+        expect(dateUtils.isYearValid('2020')).toBeTruthy();
+    });
+    test('isYearValid return false for 202o(string)', () => {
+        expect(dateUtils.isYearValid('202o')).toBeFalsy();
+    });
 });

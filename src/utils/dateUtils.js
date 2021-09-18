@@ -40,11 +40,14 @@ module.exports = {
     },
 
     /**
-     * 
+     * check year is leap year
      * @param {Number} year 
      */
     isLeapYear(year) {
         var isLeap = false;
+
+        if (!this.isYearValid(year)) return false;
+
         var targetYear = year;
 
         // convert year to number type
@@ -75,4 +78,26 @@ module.exports = {
 
         return isLeap;
     },
+
+    /**
+     * check year is valid
+     * @param {Number} year 
+     */
+     isYearValid (year) {
+        var isValid = true;
+
+        try {
+            if (!Number.isInteger(year)) {
+                year = Number.parseInt(year);
+            }
+
+            if (year < 1970 || year > new Date().getFullYear()) {
+                isValid = false;
+            }
+        } catch {
+            isValid = false;
+        }
+
+        return isValid;
+    }
 }
