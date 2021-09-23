@@ -12,7 +12,7 @@ const { themeUtils, grassUtils } = require('../src/utils/util');
 module.exports = async (req, res) => {
     try {
         res.setHeader('Cache-Control', 's-maxage=86400');
-        res.setHeader("Content-Type", "text/html");
+        res.setHeader("Content-Type", "image/svg+xml");
 
         // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
 
