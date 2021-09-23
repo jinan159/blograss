@@ -26,7 +26,10 @@ module.exports = async (req, res) => {
             text_color: Joi.string(),
             grass_color: Joi.string(),
 
-            year: Joi.number().min(1970).max(new Date().getFullYear())
+            /*
+                Disable the 'year' parameter until the tistory(blog) API call latency issue is resolved
+            */
+            // year: Joi.number().min(1970).max(new Date().getFullYear())
         });
         
         // joi validation
