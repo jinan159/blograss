@@ -23,7 +23,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("text/html");
+        expect(responseMock.statusCode).toBe(400);
     });
 
     test('index.js api call with required parameter only', async ()=>{
@@ -38,7 +38,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'background_color\' parameter', async ()=>{
@@ -48,13 +48,13 @@ describe('index.js test', ()=>{
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            background_color: "dark",
+            dark_mode: true,
         }
 
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'text_color\' parameter', async ()=>{
@@ -70,7 +70,7 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
     test('index.js api call with \'grass_color\' parameter', async ()=>{
@@ -86,24 +86,24 @@ describe('index.js test', ()=>{
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 
-    test('index.js api call with \'grass_size\' parameter', async ()=>{
+    // test('index.js api call with \'size\' parameter', async ()=>{
 
-        // set request
-        requestMock.method = 'GET';
-        requestMock.query = {
-            blog_type: "tistory",
-            blog_name: "jwkim96",
-            grass_size: "large",
-        }
+    //     // set request
+    //     requestMock.method = 'GET';
+    //     requestMock.query = {
+    //         blog_type: "tistory",
+    //         blog_name: "jwkim96",
+    //         size: "large",
+    //     }
 
-        await index(requestMock, responseMock);
+    //     await index(requestMock, responseMock);
 
-        expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
-    });
+    //     expect(responseMock.RESPONSE_DATA).toBeDefined();
+    //     expect(responseMock.statusCode).toBe(200);
+    // });
 
 
     test('index.js api call with all parameter', async ()=>{
@@ -113,16 +113,16 @@ describe('index.js test', ()=>{
         requestMock.query = {
             blog_type: "tistory",
             blog_name: "jwkim96",
-            background_color: "dark",
+            // size: "large",
             text_color: "green",
             grass_color: "green",
-            grass_size: "large",
+            dark_mode: true
         }
 
         await index(requestMock, responseMock);
 
         expect(responseMock.RESPONSE_DATA).toBeDefined();
-        expect(responseMock.getHeader("Content-Type")).toEqual("image/svg+xml");
+        expect(responseMock.statusCode).toBe(200);
     });
 	
 	
