@@ -34,7 +34,9 @@ const render = (renderInfoDTO, blogInfoDTOArray) => {
     // TODO develop less more
     // -- less more script ------------------------------------------------------------------------------------------------------------
 
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="180" version="1.1">${blograssScript}</svg>`;
+    const { width, height } = grassUtils.getRectSize(renderInfoDTO.size);
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" version="1.1">${blograssScript}</svg>`;
 }
 
 /**
