@@ -16,7 +16,6 @@
 <p align='center'>읽어주셔서 감사합니다</p>
 
 ----
-:information_source: **현재 개발중인 버전입니다!**
 
 # 목차
 1. <a href="#사용법">사용법</a>
@@ -35,12 +34,12 @@
 
 - Markdown
 ```
-![blograss](https://blograss-git-dev-jinan159.vercel.app/api?{parameters})
+![blograss](https://blograss.vercel.app/api?{parameters})
 ```
 
 - HTML
 ```
-<img src="https://blograss-git-dev-jinan159.vercel.app/api?{parameters}" />
+<img src="https://blograss.vercel.app/api?{parameters}" />
 ```
 
 # 옵션
@@ -49,7 +48,7 @@ query string 입니다.
 ### **blog_type(required)**
 `tistory`
 
-:information_source: 현재는 `tistory` 타입만 제공됩니다.(타 블로그도 업데이트 예정)
+:information_source: 현재는 `tistory` 타입만 제공됩니다.
 
 <br>
 
@@ -58,19 +57,6 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 > ex) https://`blog_name`.tistory.com
 
 <br>
-
-### **year**
-`yyyy` ex) `2021`
-(default) this year
-
-<br>
-
-<!-- ### **size**
-`large` : 750px, 180px (default)<br>
-`middle` : 412px, 180px<br>
-`small` : 242px, 180px<br>
-<br> -->
-
 ### **dark_mode**
 
 - `true` (default)
@@ -98,7 +84,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 # 샘플
 - **green grass theme**
     ```http
-    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=green&darkMode=true
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=green&dark_mode=true
     ```
     <img src="./svg/examples/example_green_dark.svg" alt="example" >
     
@@ -106,7 +92,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     <br>
     
     ```http
-    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=black&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=green&text_color=black&dark_mode=false
     ```
     <img src="./svg/examples/example_green_light.svg" alt="example" >
     
@@ -115,7 +101,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 
 - **orange grass theme**
     ```http
-    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=orange&text_color=orange&darkMode=true
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=orange&text_color=orange&dark_mode=true
     ```
     <img src="./svg/examples/example_orange.svg" alt="example" >
     
@@ -124,7 +110,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 
 - **brown grass theme**
     ```http
-    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=brown&text_color=brown&darkMode=true
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=brown&text_color=brown&dark_mode=true
     ```
     <img src="./svg/examples/example_brown.svg" alt="example" >
     
@@ -132,16 +118,16 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
     <br>
 - **black grass theme**
     ```http
-    https://blograss-git-dev-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=black&darkMode=false
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=black&text_color=black&dark_mode=false
     ```
     <img src="./svg/examples/example_black.svg" alt="example" >
 
-    - optinos `grass_color=black`, `text_color=black`, `darkMode=false`
+    - optinos `grass_color=black`, `text_color=black`, `dark_mode=false`
     <br>
 
 - **white grass theme**
     ```http
-    https://blograss-git-dec-jinan159.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=white&text_color=white&darkMode=true
+    https://blograss.vercel.app/api?blog_type=tistory&blog_name=blograss&grass_color=white&text_color=white&dark_mode=true
     ```
     <img src="./svg/examples/example_white.svg" alt="example" >
     
