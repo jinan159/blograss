@@ -55,6 +55,7 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 > ex) https://`blog_name`.tistory.com
 
 <br>
+
 ### **dark_mode**
 
 - `true` (default)
