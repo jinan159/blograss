@@ -22,11 +22,9 @@
 2. <a href="#옵션">옵션</a>
     <br>2-1. <a href="#blog_typerequired">blog_type(required)</a>
     <br>2-2. <a href="#blog_namerequired">blog_name(required)</a>
-    <br>2-3. <a href="#year">year</a>
-    <!-- <br>2-4. <a href="#size">size</a> -->
-    <br>2-4. <a href="#dark_mode">dark_mode</a>
-    <br>2-5. <a href="#text_color">text_color</a>
-    <br>2-6. <a href="#grass_color">grass_color</a>
+    <br>2-3. <a href="#">dark_mode</a>
+    <br>2-4. <a href="#text_color">text_color</a>
+    <br>2-5. <a href="#grass_color">grass_color</a>
 3. <a href="#샘플">샘플</a>
 
 
@@ -34,12 +32,12 @@
 
 - Markdown
 ```
-![blograss](https://blograss.vercel.app/api?{parameters})
+![blograss](https://blograss.vercel.app/api?{옵션})
 ```
 
 - HTML
 ```
-<img src="https://blograss.vercel.app/api?{parameters}" />
+<img src="https://blograss.vercel.app/api?{옵션}" />
 ```
 
 # 옵션
