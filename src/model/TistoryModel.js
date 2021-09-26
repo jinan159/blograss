@@ -49,15 +49,19 @@ class TistoryModel {
 
         // fetch to requested year
         for (var i=0; i<(totalCount/countPerPage) + 1; i++) {
+            console.time('fetch time');
             let result = await this.fetchBlogData(blogName, startPage + i, countPerPage);
+            console.timeEnd('fetch time');
             
             if (!!result && !!result.item && !!result.item.posts) {
-                posts.push(...result.item.posts);
-                
-                var lastPost = posts[posts.length-1];
-                var lastPostDate = lastPost.date.split(' ')[0];
+                let firstPost = result.item.posts[0];
+                let firstPostDate = firstPost.date.split(' ')[0];
+                let firstPostYear = firstPostDate.split('-')[0];
 
-                if (lastPostDate.split('-')[0] == String(year - 1)) break;
+                if (firstPostYear == String(year)) {
+                    posts.push(...result.item.posts);
+                }
+                else if (firstPostYear == String(year - 1)) break;
             }
         }
 
