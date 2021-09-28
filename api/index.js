@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
         
         if (req.query.year == '-1') req.query.year = thisYear-1;
         else if (req.query.year == '-2') req.query.year = thisYear-2;
-        else req.query.year = thisYear;
+        else if (parseInt(req.query.year) < thisYear - 2) req.query.year = thisYear;
 
         const {
             // blog info parameters
