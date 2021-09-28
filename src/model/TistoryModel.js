@@ -1,16 +1,11 @@
 const axios = require('axios');
-const blogApiUtils = require('../utils/blogApiUtils');
 const BlogInfoDTO = require('../dto/BlogInfoDTO');
 const dateUtils = require('../utils/dateUtils');
 
 // TODO test case
-// TODO improve latency [vercel location:us ~ tistory api location:kr]
-// TODO improve unefficient api call logging
 class TistoryModel {
 
-    constructor() {
-        this.blogApiInfo = blogApiUtils.getBlogInfo('tistory');
-    }
+    constructor() {}
 
     /**
      * get blog data
@@ -24,98 +19,48 @@ class TistoryModel {
             throw new Error('Invalid Parameter');
         }
 
-        let totalCount = await this.getTotalCount(blogName);
         let blogInfoDTOArray = [];
-        
+        let posts = await this.getTistoryPostList(blogName, year);
+
         // success to fetchBlogData
-        if (totalCount > 0) {
-            blogInfoDTOArray = await this.findUntilTargetYearIsEnd(blogName, year, totalCount);
+        if (posts.length > 0) {
+            blogInfoDTOArray = this.convertPostsToBlogInfoDataArray(posts, year);            
         }
 
         return blogInfoDTOArray ?? [];
-    }
-
-    /**
-     * fetch api until find end of target year
-     * @param {String} blogName
-     * @param {Number} year
-     * @param {Number} totalCount
-     */
-    async findUntilTargetYearIsEnd(blogName, year, totalCount) {
-
-        let startPage = 1;
-        let countPerPage = 30;
-        let posts = [];
-
-        // fetch to requested year
-        for (var i=0; i<(totalCount/countPerPage) + 1; i++) {
-            let result = await this.fetchBlogData(blogName, startPage + i, countPerPage);
-            
-            if (!!result && !!result.item && !!result.item.posts) {
-                posts.push(...result.item.posts);
-                
-                var lastPost = posts[posts.length-1];
-                var lastPostDate = lastPost.date.split(' ')[0];
-
-                if (lastPostDate.split('-')[0] == String(year - 1)) break;
-            }
-        }
-
-        var blogInfoDTOArray = this.convertPostsToBlogInfoDataArray(posts, year);
-
-        return blogInfoDTOArray ?? [];
-    }
-
-    /**
-     * get totalCount of blog
-     * @param {String} blogName 
-     */
-    async getTotalCount(blogName) {
-        var blogData = await this.fetchBlogData(blogName, 1, 1);
-        var totalCount = 0;
-        
-        // get total count
-        if (!!blogData && !!blogData.item) totalCount = Number.parseInt(blogData.item.totalCount);
-
-        return totalCount;
     }
 
     /**
      * fetch blog data
      * @param {String} blogName 
-     * @param {Number} page 
-     * @param {Number} count 
+     * @param {Number} year
      * @returns 
      */
-    async fetchBlogData(blogName, page, count) {
+     async getTistoryPostList(blogName, year) {
 
-        var blogData = null;
+        let posts = [];
         
         // fetch blog data
         try {
-
-            var result = await axios({
+            let result = await axios({
                 method: 'get',
-                url: this.blogApiInfo.api_urls.post_list,
+                url: process.env.TISTORY_POST_LIST,
                 params: {
-                    access_token: process.env.TISTORY_ACCESS_TOKEN,
-                    output: 'json',
                     blogName,
-                    page,
-                    count
+                    year
                 }
             });
 
             // if result is success
-            if (!!result && !!result.data && result.data.tistory) {
-                blogData = result.data.tistory;
-            } 
-
-            return blogData;
+            if (!!result && !!result.data) {
+                posts = result.data;
+            }
 
         } catch(err) {
-            throw err;
+            posts = [];
         }
+
+        return posts;
     }
 
     /**

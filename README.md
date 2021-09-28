@@ -22,11 +22,12 @@
 2. <a href="#옵션">옵션</a>
     <br>2-1. <a href="#blog_typerequired">blog_type(required)</a>
     <br>2-2. <a href="#blog_namerequired">blog_name(required)</a>
-    <br>2-3. <a href="#dark_mode">dark_mode</a>
-    <br>2-4. <a href="#text_color">text_color</a>
-    <br>2-5. <a href="#grass_color">grass_color</a>
+    <br>2-3. <a href="#year">year</a>
+    <!-- <br>2-4. <a href="#size">size</a> -->
+    <br>2-4. <a href="#dark_mode">dark_mode</a>
+    <br>2-5. <a href="#text_color">text_color</a>
+    <br>2-6. <a href="#grass_color">grass_color</a>
 3. <a href="#샘플">샘플</a>
-
 
 # 사용법     
 
@@ -55,6 +56,26 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 > ex) https://`blog_name`.tistory.com
 
 <br>
+
+### **year**
+최대 2년 전까지만 제공됩니다.
+(default) this year
+
+사용법 1) 년도 4자리 입력
+> ex) `2021`
+
+사용법 2) -1, -2 입력
+> ex) Today : 2021-09-29
+>     year=-1 => 2020
+>     year=-2 => 2019
+
+<br>
+
+<!-- ### **size**
+`large` : 750px, 180px (default)<br>
+`middle` : 412px, 180px<br>
+`small` : 242px, 180px<br>
+<br> -->
 
 ### **dark_mode**
 
