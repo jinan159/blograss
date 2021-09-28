@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
             dark_mode: Joi.boolean(),
             text_color: Joi.string(),
             grass_color: Joi.string(),
-            year: Joi.number().min(thisYear-2).max(thisYear)
+            year: Joi.number().max(thisYear)
         });
         
         // joi validation
@@ -43,6 +43,10 @@ module.exports = async (req, res) => {
         
         // -- Get Request parameters ------------------------------------------------------------------------------------------------------------
         
+        if (req.query.year == '-1') req.query.year = thisYear-1;
+        else if (req.query.year == '-2') req.query.year = thisYear-2;
+        else req.query.year = thisYear;
+
         const {
             // blog info parameters
             blog_type = "",
