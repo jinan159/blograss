@@ -60,8 +60,10 @@ tistory 블로그 도메인 앞의 블로그 이름을 입력하시면 됩니다
 <br>
 
 ### **year**
+최대 2년 전까지만 제공됩니다.
 `yyyy` ex) `2021`
 (default) this year
+
 
 <br>
 

@@ -12,9 +12,11 @@ const { themeUtils, grassUtils } = require('../src/utils/util');
 module.exports = async (req, res) => {
     try {
         res.setHeader('Cache-Control', 's-maxage=86400');
-        res.setHeader("Content-Type", "image/svg+xml");
+        res.setHeader('Content-Type', 'image/svg+xml');
 
         // -- Request Query Validation ------------------------------------------------------------------------------------------------------------
+
+        let thisYear = new Date().getFullYear();
 
         // joi api validation schema
         const schema = Joi.object({
@@ -25,11 +27,7 @@ module.exports = async (req, res) => {
             dark_mode: Joi.boolean(),
             text_color: Joi.string(),
             grass_color: Joi.string(),
-
-            /*
-                Disable the 'year' parameter until the tistory(blog) API call latency issue is resolved
-            */
-            // year: Joi.number().min(1970).max(new Date().getFullYear())
+            year: Joi.number().min(thisYear-2).max(thisYear)
         });
         
         // joi validation
@@ -38,6 +36,7 @@ module.exports = async (req, res) => {
         // validation error
         if (requestValidation.error) {
             res.statusCode = 400;
+            res.setHeader('Content-Type', 'text/html');
             res.send(requestValidation.error.details[0].message);
             return;
         }
@@ -55,12 +54,11 @@ module.exports = async (req, res) => {
             background_color = (dark_mode) ? themeUtils.rectDefaultTheme : themeUtils.rectDefaultTheme, // background theme
             text_color = themeUtils.textDefaultTheme,       // title text color
             grass_color = themeUtils.grassDefaultTheme,     // grass color
-
             year = new Date().getFullYear(),
         } = req.query;
 
         // -- Set Current Theme ------------------------------------------------------------------------------------------------------------
-        var renderInfoDTO = new RenderInfoDTO(blog_type
+        let renderInfoDTO = new RenderInfoDTO(blog_type
                                             , blog_name
                                             , size
                                             , background_color
@@ -71,12 +69,11 @@ module.exports = async (req, res) => {
 
 
         // -- Data preprocessing ------------------------------------------------------------------------------------------------------------
-
-        var blogInfoArray = []
-        var blogInfoDTOArray = []
+        let blogInfoArray = []
+        let blogInfoDTOArray = []
         try {
 
-            var tistoryModel = new TistoryModel();        
+            let tistoryModel = new TistoryModel();        
             blogInfoArray = await tistoryModel.getBlogData(renderInfoDTO.blog_name, renderInfoDTO.year);
         
             // get leveled blog info
@@ -87,7 +84,7 @@ module.exports = async (req, res) => {
         }
 
         // -- Render Blograss ------------------------------------------------------------------------------------------------------------
-        var blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);
+        let blograssSvg = blograss.render(renderInfoDTO, blogInfoDTOArray);
 
         res.statusCode = 200;
         res.send(blograssSvg);
