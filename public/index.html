@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+        }
+        hr {
+            color: #ffffff;
+        }
+        img.preview {
+            border: 1px solid black;
+        }
+        .no-decorate {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .container {
+            width: calc(100% - 100px);
+            max-width: 500px;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px black ;
+            background-color: #23272d;
+            color: #ffffff;
+        }
+        .title {
+            margin: 0.5rem;
+        }        
+        .input-element {
+            -ms-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box; 
+            box-sizing: content-box;
+            width: 90%;
+            padding: 5px;
+        }
+        .flex-container {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+        @media (min-width: 440px){
+            .flex-container {
+                margin-bottom: 1rem;
+            }
+        }
+        .item{
+            width: calc(50%);
+            min-width: 170px;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+        .item-title {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">
+            <a href="https://github.com/jinan159/blograss" class="no-decorate" target="new">
+                <img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-link-business-kiranshastry-gradient-kiranshastry.png" width="20px"/>
+                Blograss</a>
+        </h2>
+        
+        <hr><br>
+        <div class="flex-container">
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- blog type (required)</span>
+                </div>
+                <input class="input-element" type="text" id="blog_type" placeholder="blog type" value="tistory" readonly>
+            </div>
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- blog name (required)</span>
+                </div>
+                <input class="input-element" type="text" id="blog_name">
+            </div>
+        </div>
+        <div class="flex-container">
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- year</span>
+                </div>
+                <input class="input-element" type="number" id="year" placeholder="year" maxlength="4">
+            </div>
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- dark mode</span>
+                </div>
+                <select class="input-element" id="dark_mode">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- text color</span>
+                </div>                
+                <select class="input-element" id="text_color">
+                    <option value="">select text color</option>
+                    <option value="green">green</option>
+                    <option value="orange">orange</option>
+                    <option value="brown">brown</option>
+                    <option value="black">black</option>
+                    <option value="white">white</option>
+                </select>
+            </div>
+            <div class="item">
+                <div class="item-title">
+                    <span class="title">- grass color</span>
+                </div>
+                <select class="input-element" id="grass_color">
+                    <option value="">select grass color</option>
+                    <option value="green">green</option>
+                    <option value="orange">orange</option>
+                    <option value="brown">brown</option>
+                    <option value="black">black</option>
+                    <option value="white">white</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex-container">
+            <input type="button" value="make preview" onclick="makePreview()">
+        </div>
+        <hr>
+        <div class="flex-container">
+            <div class="item-title">
+                <span class="title">- preview(click to copy url)</span>
+            </div>
+            <img class="preview" src="./assets/svg/default_example.svg" id="previewImg" width="100%" onclick="previewClick()" alt="blograss" />
+        </div>
+        <div class="flex-container">
+            <img src="./assets/svg/Spinner.svg" id="spinner" width="100px">
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            let previewImg = document.getElementById('previewImg');
+            let spinner = document.getElementById('spinner');
+            
+            spinner.style.display = 'none';
+
+            previewImg.onload = function() {
+                previewImg.style.display = 'block';
+                spinner.style.display = 'none';
+            }
+        }
+
+        function makePreview() {
+            let previewImg = document.getElementById('previewImg');
+            let spinner = document.getElementById('spinner');
+
+            let blog_type = document.getElementById('blog_type').value;
+            let blog_name = document.getElementById('blog_name').value;
+            let year = document.getElementById('year').value;
+            let dark_mode = document.getElementById('dark_mode').value;
+            let text_color = document.getElementById('text_color').value;
+            let grass_color= document.getElementById('grass_color').value;
+
+            //console.log(blog_type, blog_name, year, dark_mode, text_color, grass_color);
+
+            let url = "https://blograss.vercel.app/api?";
+            url += `blog_type=${blog_type}`
+            url += `&blog_name=${blog_name}`
+            if (!!year) url += `&year=${year}&`
+            if (!!dark_mode) url += `&dark_mode=${dark_mode}`
+            if (!!text_color) url += `&text_color=${text_color}`
+            if (!!grass_color) url += `&grass_color=${grass_color}`
+
+            spinner.style.display = 'block';
+            previewImg.style.display = 'none';
+            previewImg.src = url;            
+        }
+
+        function previewClick() {
+            let previewImg = document.getElementById('previewImg');
+
+            navigator.clipboard.writeText(previewImg.src).then(function() {
+                alert('Blograss url is copied');
+            });
+        }
+    </script>
+</body>
+</html>
